@@ -521,7 +521,7 @@
           <p class="about-role" data-lang="en">Founder & Streamer</p>
           <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:8px">
             <a href="https://tiktok.com/@filippodatruf" target="_blank" style="font-size:12px;color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:8px">🎵 @filippodatruf</a>
-            <a href="mailto:furtadoxsidex@gmail.com" style="font-size:12px;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:8px">📧 furtadoxsidex@gmail.com</a>
+            <a href="/cdn-cgi/l/email-protection#8ee8fbfcfaefeae1f6fde7eaebf6cee9e3efe7e2a0ede1e3" style="font-size:12px;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:8px">📧 <span class="__cf_email__" data-cfemail="ef899a9d9b8e8b80979c868b8a97af88828e8683c18c8082">[email&#160;protected]</span></a>
             <span style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px">📱 77 435 97 81</span>
           </div>
         </div>
@@ -565,7 +565,7 @@
         <h3 data-lang="en">Information</h3>
         <p data-lang="fr">N'hésite pas à nous contacter pour toute question, suggestion d'amélioration ou proposition de collaboration.</p>
         <p data-lang="en">Don't hesitate to contact us for any question, improvement suggestion or collaboration proposal.</p>
-        <div class="cinfo-item"><span class="cinfo-ico">📧</span><div><p style="font-size:13px;font-weight:600">Email</p><a href="mailto:furtadoxsidex@gmail.com" style="font-size:12px;color:var(--accent);text-decoration:none">furtadoxsidex@gmail.com</a></div></div>
+        <div class="cinfo-item"><span class="cinfo-ico">📧</span><div><p style="font-size:13px;font-weight:600">Email</p><a href="/cdn-cgi/l/email-protection#5c3a292e283d3833242f353839241c3b313d3530723f3331" style="font-size:12px;color:var(--accent);text-decoration:none"><span class="__cf_email__" data-cfemail="98feedeaecf9fcf7e0ebf1fcfde0d8fff5f9f1f4b6fbf7f5">[email&#160;protected]</span></a></div></div>
         <div class="cinfo-item"><span class="cinfo-ico">📱</span><div><p style="font-size:13px;font-weight:600">WhatsApp / Téléphone</p><a href="tel:+221774359781" style="font-size:12px;color:var(--accent);text-decoration:none">77 435 97 81</a></div></div>
         <div class="cinfo-item"><span class="cinfo-ico">🎵</span><div><p style="font-size:13px;font-weight:600">TikTok</p><a href="https://tiktok.com/@filippodatruf" target="_blank" style="font-size:12px;color:var(--accent);text-decoration:none">@filippodatruf</a></div></div>
         <div class="cinfo-item"><span class="cinfo-ico">⏱️</span><div><p style="font-size:13px;font-weight:600" data-lang="fr">Temps de réponse</p><p style="font-size:13px;font-weight:600" data-lang="en">Response time</p><p style="font-size:12px;color:var(--muted)" data-lang="fr">Sous 48h</p><p style="font-size:12px;color:var(--muted)" data-lang="en">Within 48h</p></div></div>
@@ -660,9 +660,16 @@
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ── NAV ──
-function go(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById('page-'+p).classList.add('active');window.scrollTo(0,0);if(p==='tools')buildCL();setLang(document.body.className)}
+function go(p){
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  var pg=document.getElementById('page-'+p);
+  if(pg){pg.classList.add('active');}
+  window.scrollTo(0,0);
+  if(p==='tools')buildCL();
+  setLang(document.body.className);
+}
 
 // ── LANG ──
 function setLang(l){document.body.className=l;document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('active',b.textContent===l.toUpperCase()))}
@@ -748,13 +755,4 @@ async function sendContact(){
     } else {
       alert('Erreur envoi. Contacte directement : furtadoxsidex@gmail.com');
       btn.disabled=false;
-      btn.innerHTML='<span data-lang="fr">📨 Envoyer le message</span><span data-lang="en">📨 Send message</span>';
-      setLang(document.body.className);
-    }
-  } catch(e){
-    alert('Erreur réseau. Contacte directement : furtadoxsidex@gmail.com');
-    btn.disabled=false;
-    btn.innerHTML='<span data-lang="fr">📨 Envoyer le message</span><span data-lang="en">📨 Send message</span>';
-    setLang(document.body.className);
-  }
-}
+      btn.innerHTML='<span data-lang="fr">📨 E
