@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Filippo Oda Stream Zone — Portail #1 des Streamers</title>
+  <meta name="description" content="Filippo Oda Stream Zone : outils gratuits, tutoriels, communauté et ressources pour streamers TikTok, Twitch, YouTube et Instagram. 100% gratuit."/>
+  <meta name="keywords" content="streamer, stream, live, TikTok, Twitch, YouTube, Instagram, outils, tutoriels, communauté, gratuit"/>
+  <meta name="author" content="Filippo Oda"/>
+  <meta property="og:title" content="Filippo Oda Stream Zone"/>
+  <meta property="og:description" content="Le portail #1 des streamers — outils, tutoriels, communauté. 100% gratuit."/>
+  <meta property="og:type" content="website"/>
+  <link rel="canonical" href="https://streamzone.netlify.app"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Exo+2:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#060a12;--bg2:#0a1020;--bg3:#0d1528;
+      --accent:#00cfff;--accent2:#0066ff;
+      --text:#e8f4ff;--muted:#7a9ab8;
+      --border:rgba(0,207,255,0.12);
+      --radius:14px;
+      --fh:'Orbitron',sans-serif;
+      --fb:'Exo 2',sans-serif;
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:var(--fb);font-size:16px;line-height:1.7;overflow-x:hidden}
+    body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,207,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,207,255,0.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.9rem 2rem;background:rgba(6,10,18,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+    .logo{font-family:var(--fh);font-size:.9rem;font-weight:900;color:var(--text);display:flex;align-items:center;gap:10px;cursor:pointer;letter-spacing:.04em}
+    .logo span{color:var(--accent)}
+    .ldot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);animation:blink 1.4s infinite}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+    .nav-links{display:flex;gap:1.5rem;list-style:none;align-items:center}
+    .nl{color:var(--muted);font-size:13px;font-weight:500;transition:color .2s;cursor:pointer;padding:4px 0;border-bottom:2px solid transparent}
+    .nl:hover,.nl.active{color:var(--accent);border-bottom-color:var(--accent)}
+    .nl-cta{color:var(--accent)!important;border:1px solid var(--accent);padding:6px 16px;border-radius:4px;font-size:12px;font-weight:700;transition:background .2s;cursor:pointer;border-bottom:1px solid var(--accent)!important}
+    .nl-cta:hover{background:rgba(0,207,255,.1)}
+    .lang-sw{display:flex;gap:4px;background:rgba(0,207,255,.04);border:1px solid var(--border);border-radius:4px;padding:3px}
+    .lb{font-size:11px;font-weight:700;padding:3px 8px;border-radius:3px;border:none;cursor:pointer;background:transparent;color:var(--muted);transition:all .2s;font-family:var(--fb)}
+    .lb.active{background:var(--accent);color:#000}
+
+    /* PAGES */
+    .page{display:none;min-height:100vh}
+    .page.active{display:block}
+
+    /* BUTTONS */
+    .btn{background:linear-gradient(135deg,#00cfff,#0066ff);color:#000;padding:12px 28px;border-radius:4px;font-family:var(--fb);font-size:14px;font-weight:700;border:none;cursor:pointer;display:inline-block;transition:opacity .2s,transform .15s,box-shadow .2s;letter-spacing:.03em}
+    .btn:hover{opacity:.9;transform:translateY(-2px);box-shadow:0 0 24px rgba(0,207,255,.4)}
+    .btn-ghost{background:transparent;color:var(--text);padding:12px 28px;border-radius:4px;font-family:var(--fb);font-size:14px;font-weight:600;border:1px solid var(--border);cursor:pointer;display:inline-block;transition:border-color .2s,color .2s}
+    .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+    .back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:14px;cursor:pointer;margin-bottom:2rem;transition:color .2s;background:none;border:none;font-family:var(--fb)}
+    .back-btn:hover{color:var(--accent)}
+
+    /* SHARED */
+    .wrap{padding:6rem 2rem;max-width:1100px;margin:0 auto;position:relative;z-index:1}
+    .stag{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;font-family:var(--fh)}
+    h2{font-family:var(--fh);font-size:clamp(1.3rem,3.5vw,2.2rem);font-weight:900;line-height:1.2;letter-spacing:.02em;margin-bottom:1rem}
+    .sub{color:var(--muted);font-size:1rem;max-width:520px;margin-bottom:3rem;line-height:1.8}
+    .fullbg{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;z-index:1}
+    .grad{background:linear-gradient(135deg,#00cfff,#0066ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .phero{padding:9rem 2rem 2rem;text-align:center;position:relative;z-index:1}
+    .phero h1{font-family:var(--fh);font-size:clamp(1.8rem,5vw,3.2rem);font-weight:900;margin-bottom:1rem}
+    .phero p{color:var(--muted);max-width:520px;margin:0 auto}
+    footer{border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center;font-size:12px;color:var(--muted);position:relative;z-index:1}
+    footer a,.flink{color:var(--muted);text-decoration:none;cursor:pointer;transition:color .2s}
+    footer a:hover,.flink:hover{color:var(--accent)}
+    .fbadge{display:inline-block;background:rgba(0,200,100,.12);color:#34d399;border:1px solid rgba(0,200,100,.25);font-size:10px;font-weight:700;padding:3px 10px;border-radius:3px;letter-spacing:.08em;margin-left:8px;vertical-align:middle}
+
+    /* ══ HOME ══ */
+    .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 4rem;position:relative;z-index:1}
+    .hglow{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(0,207,255,.1) 0%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-55%);pointer-events:none}
+    .lbadge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,207,255,.08);border:1px solid rgba(0,207,255,.3);color:var(--accent);padding:6px 18px;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:2rem}
+    h1{font-family:var(--fh);font-size:clamp(2rem,6vw,4.5rem);font-weight:900;line-height:1.1;letter-spacing:.02em;margin-bottom:1.5rem}
+    .hsub{font-size:1.05rem;color:var(--muted);max-width:580px;margin:0 auto 2.5rem;line-height:1.8}
+    .hbtns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:3.5rem}
+    .platrow{display:flex;align-items:center;gap:10px;justify-content:center;flex-wrap:wrap}
+    .platrow>span{font-size:12px;color:var(--muted)}
+    .ptag{font-size:12px;font-weight:600;padding:5px 14px;border-radius:4px;border:1px solid var(--border);color:var(--accent);background:rgba(0,207,255,.05)}
+    .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;z-index:1}
+    .si{padding:2rem 1.5rem;text-align:center;border-right:1px solid var(--border)}
+    .si:last-child{border-right:none}
+    .sico{font-size:1.8rem;display:block;margin-bottom:6px}
+    .snum{font-family:var(--fh);font-size:1.8rem;font-weight:900;color:var(--accent);text-shadow:0 0 20px rgba(0,207,255,.5);display:block}
+    .slbl{font-size:12px;color:var(--muted);margin-top:4px}
+    .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+    .fc{background:var(--bg2);padding:1.75rem;transition:background .2s;position:relative;cursor:pointer}
+    .fc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent2),var(--accent));opacity:0;transition:opacity .2s}
+    .fc:hover{background:var(--bg3)}.fc:hover::before{opacity:1}
+    .fci{font-size:2rem;margin-bottom:.75rem;display:block}
+    .fct{font-family:var(--fh);font-size:.8rem;font-weight:700;margin-bottom:8px;color:var(--text)}
+    .fcd{font-size:13px;color:var(--muted);line-height:1.7}
+    .pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    .pc{border-radius:var(--radius);padding:1.75rem;border:1px solid}
+    .pc.tiktok{background:rgba(0,207,255,.04);border-color:rgba(0,207,255,.2)}
+    .pc.twitch{background:rgba(100,65,165,.08);border-color:rgba(100,65,165,.3)}
+    .pc.youtube{background:rgba(255,50,50,.05);border-color:rgba(255,50,50,.2)}
+    .pc.insta{background:rgba(225,48,108,.05);border-color:rgba(225,48,108,.2)}
+    .pce{font-size:2rem;display:block;margin-bottom:10px}
+    .pcn{font-family:var(--fh);font-size:.85rem;font-weight:700;margin-bottom:8px}
+    .pcd{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:10px}
+    .pcb{font-size:10px;font-weight:700;padding:3px 10px;border-radius:3px;display:inline-block;letter-spacing:.06em;text-transform:uppercase}
+    .b-t{background:rgba(0,207,255,.12);color:#00cfff}
+    .b-tw{background:rgba(100,65,165,.2);color:#bf94ff}
+    .b-y{background:rgba(255,50,50,.12);color:#ff6b6b}
+    .b-i{background:rgba(225,48,108,.15);color:#f7659c}
+    .tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+    .tc{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:border-color .2s}
+    .tc:hover{border-color:rgba(0,207,255,.3)}
+    .stars{color:var(--accent);font-size:13px;margin-bottom:10px;letter-spacing:3px}
+    .tt{font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:1rem;font-style:italic}
+    .ta{display:flex;align-items:center;gap:10px}
+    .ava{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;border:1px solid}
+    .av1{background:rgba(0,207,255,.1);color:var(--accent);border-color:rgba(0,207,255,.3)}
+    .av2{background:rgba(100,65,165,.15);color:#bf94ff;border-color:rgba(100,65,165,.3)}
+    .av3{background:rgba(0,200,100,.1);color:#34d399;border-color:rgba(0,200,100,.3)}
+    .av4{background:rgba(225,48,108,.15);color:#f7659c;border-color:rgba(225,48,108,.3)}
+    .an{font-size:13px;font-weight:600}
+    .ai{font-size:11px;color:var(--muted)}
+    .ctabox{max-width:580px;margin:0 auto;background:var(--bg2);border:1px solid rgba(0,207,255,.25);border-radius:var(--radius);padding:3rem 2rem;text-align:center;box-shadow:0 0 60px rgba(0,207,255,.08);position:relative;z-index:1}
+
+    /* ══ TUTORIELS ══ */
+    .tfilters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:2rem}
+    .fbtn{font-size:12px;font-weight:600;padding:6px 16px;border-radius:999px;border:1px solid var(--border);color:var(--muted);background:transparent;cursor:pointer;font-family:var(--fb);transition:all .2s}
+    .fbtn.active,.fbtn:hover{background:var(--accent);color:#000;border-color:var(--accent)}
+    .tutogrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px}
+    .tucard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:border-color .2s,transform .2s}
+    .tucard:hover{border-color:rgba(0,207,255,.35);transform:translateY(-3px)}
+    .tuthumb{height:130px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative}
+    .tb-tiktok{background:linear-gradient(135deg,rgba(0,207,255,.1),rgba(0,102,255,.1))}
+    .tb-twitch{background:linear-gradient(135deg,rgba(100,65,165,.15),rgba(80,40,140,.1))}
+    .tb-youtube{background:linear-gradient(135deg,rgba(255,50,50,.1),rgba(200,0,0,.05))}
+    .tb-insta{background:linear-gradient(135deg,rgba(225,48,108,.1),rgba(150,20,70,.05))}
+    .tb-general{background:linear-gradient(135deg,rgba(0,207,255,.08),rgba(0,102,255,.05))}
+    .tlvl{position:absolute;top:10px;right:10px;font-size:10px;font-weight:700;padding:3px 10px;border-radius:3px}
+    .lv-d{background:rgba(52,211,153,.15);color:#34d399}
+    .lv-i{background:rgba(251,191,36,.15);color:#fbbf24}
+    .lv-a{background:rgba(239,68,68,.15);color:#ef4444}
+    .tubody{padding:1.25rem}
+    .tupl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+    .tuti{font-family:var(--fh);font-size:.78rem;font-weight:700;margin-bottom:8px;line-height:1.4}
+    .tude{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:12px}
+    .tumt{display:flex;align-items:center;gap:10px;font-size:11px;color:var(--muted)}
+    .tudot{width:4px;height:4px;border-radius:50%;background:var(--border)}
+
+    /* TUTO DETAIL */
+    .tuto-detail{display:none;padding:8rem 2rem 4rem;max-width:800px;margin:0 auto;position:relative;z-index:1}
+    .tuto-detail.show{display:block}
+    .tuto-content h3{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--accent);margin:2rem 0 .75rem}
+    .tuto-content p{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:1rem}
+    .tuto-content ul{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:1rem;padding-left:1.5rem}
+    .tuto-content li{margin-bottom:.4rem}
+    .tuto-content .tip{background:rgba(0,207,255,.06);border:1px solid rgba(0,207,255,.2);border-radius:8px;padding:1rem;margin:1rem 0;font-size:13px}
+
+    /* ══ OUTILS ══ */
+    .toolsgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-bottom:3rem}
+    .toolcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;transition:border-color .2s}
+    .toolcard:hover{border-color:rgba(0,207,255,.35)}
+    .toi{font-size:2.5rem;display:block;margin-bottom:1rem}
+    .ton{font-family:var(--fh);font-size:.85rem;font-weight:700;margin-bottom:8px}
+    .tod{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:1.25rem}
+    .widget{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-top:1rem}
+    .tdisp{font-family:var(--fh);font-size:2.5rem;font-weight:900;color:var(--accent);text-align:center;text-shadow:0 0 20px rgba(0,207,255,.5);margin-bottom:1rem}
+    .tctrls{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+    .tbtn{font-size:12px;font-weight:700;padding:8px 16px;border-radius:4px;border:1px solid var(--border);cursor:pointer;font-family:var(--fb);background:var(--bg2);color:var(--text);transition:all .2s}
+    .tbtn:hover{border-color:var(--accent);color:var(--accent)}
+    .tbtn.go{background:linear-gradient(135deg,#00cfff,#0066ff);color:#000;border:none}
+    .cnum{font-family:var(--fh);font-size:3rem;font-weight:900;color:var(--accent);text-shadow:0 0 20px rgba(0,207,255,.5);display:block;text-align:center;margin-bottom:1rem}
+    .ovinput{width:100%;padding:8px 12px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--fb);font-size:13px;outline:none;margin-bottom:8px}
+    .ovinput:focus{border-color:var(--accent)}
+    .ovprev{background:#000;border-radius:8px;padding:1rem;margin-bottom:1rem;min-height:70px;display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:.85rem;border:1px solid rgba(255,255,255,.05);word-break:break-all;text-align:center}
+    .colors{display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+    .co{width:26px;height:26px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:border-color .2s}
+    .co.sel{border-color:#fff}
+    .toolbtn{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent);border:1px solid rgba(0,207,255,.3);padding:6px 14px;border-radius:4px;cursor:pointer;background:rgba(0,207,255,.05);transition:background .2s;font-family:var(--fb)}
+    .toolbtn:hover{background:rgba(0,207,255,.12)}
+
+    /* ══ COMMUNAUTÉ ══ */
+    .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:3rem}
+    .ccard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem}
+    .ctitle{font-family:var(--fh);font-size:.82rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+    .odot{width:8px;height:8px;border-radius:50%;background:#34d399;box-shadow:0 0 6px #34d399}
+    .mlist{display:flex;flex-direction:column;gap:8px}
+    .mitem{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+    .mitem:last-child{border-bottom:none}
+    .mn{font-size:13px;font-weight:600}
+    .mp{font-size:11px;color:var(--muted)}
+    .mb{font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;margin-left:auto}
+    .plist{display:flex;flex-direction:column;gap:10px}
+    .pitem{padding:12px;background:var(--bg3);border-radius:8px;border:1px solid var(--border);cursor:pointer;transition:border-color .2s}
+    .pitem:hover{border-color:rgba(0,207,255,.3)}
+    .ptit{font-size:13px;font-weight:600;margin-bottom:4px}
+    .pmeta{font-size:11px;color:var(--muted);display:flex;gap:12px}
+    .discbox{background:linear-gradient(135deg,rgba(88,101,242,.15),rgba(88,101,242,.05));border:1px solid rgba(88,101,242,.3);border-radius:var(--radius);padding:2rem;text-align:center;margin-bottom:3rem}
+    .discbox h3{font-family:var(--fh);font-size:.95rem;font-weight:700;margin-bottom:.75rem}
+    .discbox p{font-size:14px;color:var(--muted);margin-bottom:1.25rem}
+    .discbtn{display:inline-block;background:#5865f2;color:#fff;padding:11px 26px;border-radius:4px;font-weight:700;font-size:14px;border:none;cursor:pointer;font-family:var(--fb);transition:opacity .2s}
+    .discbtn:hover{opacity:.88}
+    .collgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+    .collcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem}
+    .collh{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+    .colln{font-size:14px;font-weight:600}
+    .collp{font-size:11px;color:var(--muted)}
+    .colld{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:12px}
+    .collbtn{font-size:12px;font-weight:600;padding:6px 14px;border-radius:4px;border:1px solid var(--accent);color:var(--accent);background:rgba(0,207,255,.05);cursor:pointer;font-family:var(--fb);transition:background .2s}
+    .collbtn:hover{background:rgba(0,207,255,.12)}
+
+    /* ══ CONTACT ══ */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+    .contact-info h3{font-family:var(--fh);font-size:.9rem;font-weight:700;margin-bottom:1rem}
+    .contact-info p{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:1.5rem}
+    .cinfo-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);font-size:13px}
+    .cinfo-item:last-child{border-bottom:none}
+    .cinfo-ico{font-size:1.4rem}
+
+    /* ══ A PROPOS ══ */
+    .about-grid{display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start}
+    .about-avatar{background:linear-gradient(135deg,rgba(0,207,255,.15),rgba(0,102,255,.1));border:1px solid rgba(0,207,255,.25);border-radius:var(--radius);padding:2.5rem;text-align:center}
+    .about-avatar .big-ava{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,#00cfff,#0066ff);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:2rem;font-weight:900;color:#000;margin:0 auto 1rem}
+    .about-name{font-family:var(--fh);font-size:.95rem;font-weight:900;margin-bottom:.5rem}
+    .about-role{font-size:12px;color:var(--accent);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+    .about-content h3{font-family:var(--fh);font-size:.9rem;font-weight:700;color:var(--accent);margin:1.5rem 0 .75rem}
+    .about-content p{font-size:14px;color:var(--muted);line-height:1.85;margin-bottom:1rem}
+    .about-vals{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:1rem}
+    .val-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1rem;font-size:13px}
+    .val-ico{font-size:1.5rem;display:block;margin-bottom:6px}
+    .val-name{font-family:var(--fh);font-size:.75rem;font-weight:700;margin-bottom:4px}
+    .val-desc{font-size:12px;color:var(--muted)}
+
+    /* ══ NEWSLETTER ══ */
+    .nl-box{background:linear-gradient(135deg,rgba(0,207,255,.08),rgba(0,102,255,.05));border:1px solid rgba(0,207,255,.2);border-radius:var(--radius);padding:2.5rem;text-align:center;margin-bottom:2rem}
+    .nl-box h3{font-family:var(--fh);font-size:1rem;font-weight:900;margin-bottom:.75rem}
+    .nl-box p{font-size:14px;color:var(--muted);margin-bottom:1.5rem}
+    .nl-form{display:flex;gap:10px;max-width:420px;margin:0 auto;flex-wrap:wrap}
+    .nl-input{flex:1;padding:11px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:4px;color:var(--text);font-family:var(--fb);font-size:14px;outline:none;min-width:200px}
+    .nl-input:focus{border-color:var(--accent)}
+    .nl-input::placeholder{color:var(--muted)}
+
+    /* ══ AUTH ══ */
+    .authcenter{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:6rem 1.5rem 3rem;position:relative;z-index:1}
+    .authcard{background:var(--bg2);border:1px solid rgba(0,207,255,.2);border-radius:var(--radius);padding:2.5rem 2rem;width:100%;max-width:420px;box-shadow:0 0 60px rgba(0,207,255,.06)}
+    .atabs{display:flex;gap:0;margin-bottom:2rem;border:1px solid var(--border);border-radius:6px;overflow:hidden}
+    .atab{flex:1;padding:10px;text-align:center;font-size:13px;font-weight:700;cursor:pointer;background:transparent;color:var(--muted);border:none;font-family:var(--fb);transition:all .2s}
+    .atab.active{background:var(--accent);color:#000}
+    .aform{display:none}
+    .aform.active{display:block}
+    .fg{margin-bottom:1.1rem}
+    .fl{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:5px;letter-spacing:.04em;text-transform:uppercase}
+    .fi{width:100%;padding:11px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--fb);font-size:14px;outline:none;transition:border-color .2s}
+    .fi:focus{border-color:var(--accent)}
+    .fi::placeholder{color:var(--muted)}
+    .fi.err{border-color:rgba(239,68,68,.5)}
+    .em{font-size:11px;color:#ef4444;margin-top:4px;display:none}
+    .sbtn{width:100%;padding:13px;background:linear-gradient(135deg,#00cfff,#0066ff);color:#000;font-family:var(--fb);font-size:14px;font-weight:700;border:none;border-radius:6px;cursor:pointer;margin-top:1.25rem;transition:opacity .2s,box-shadow .2s}
+    .sbtn:hover{opacity:.9;box-shadow:0 0 20px rgba(0,207,255,.35)}
+    .aico{font-size:2.5rem;display:block;text-align:center;margin-bottom:.75rem}
+    .atit{font-family:var(--fh);font-size:1rem;font-weight:900;text-align:center;margin-bottom:.4rem}
+    .asub{font-size:13px;color:var(--muted);text-align:center;margin-bottom:1.75rem}
+    .succbox{text-align:center;padding:1rem 0;display:none}
+    .succico{font-size:3rem;display:block;margin-bottom:1rem}
+    .succbox h3{font-family:var(--fh);font-size:.95rem;font-weight:900;color:var(--accent);margin-bottom:.75rem}
+    .succbox p{font-size:13px;color:var(--muted);line-height:1.7}
+
+    /* i18n */
+    [data-lang]{display:none}
+    body.fr [data-lang="fr"]{display:block}
+    body.en [data-lang="en"]{display:block}
+    body.fr span[data-lang="fr"],body.fr a[data-lang="fr"],body.fr p[data-lang="fr"],body.fr div[data-lang="fr"],body.fr li[data-lang="fr"]{display:inline}
+    body.en span[data-lang="en"],body.en a[data-lang="en"],body.en p[data-lang="en"],body.en div[data-lang="en"],body.en li[data-lang="en"]{display:inline}
+
+    @media(max-width:768px){
+      .nav-links{display:none}
+      nav{padding:.9rem 1.25rem}
+      .si{border-right:none;border-bottom:1px solid var(--border)}
+      .cgrid{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      .about-grid{grid-template-columns:1fr}
+      .about-vals{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body class="fr">
+
+<nav>
+  <div class="logo" onclick="go('home')"><div class="ldot"></div>FILIPPO ODA <span>STREAM ZONE</span></div>
+  <ul class="nav-links">
+    <li><span class="nl" onclick="go('home')" data-lang="fr">Accueil</span><span class="nl" onclick="go('home')" data-lang="en">Home</span></li>
+    <li><span class="nl" onclick="go('tutos')" data-lang="fr">Tutoriels</span><span class="nl" onclick="go('tutos')" data-lang="en">Tutorials</span></li>
+    <li><span class="nl" onclick="go('tools')" data-lang="fr">Outils</span><span class="nl" onclick="go('tools')" data-lang="en">Tools</span></li>
+    <li><span class="nl" onclick="go('community')" data-lang="fr">Communauté</span><span class="nl" onclick="go('community')" data-lang="en">Community</span></li>
+    <li><span class="nl" onclick="go('about')" data-lang="fr">À propos</span><span class="nl" onclick="go('about')" data-lang="en">About</span></li>
+    <li><span class="nl" onclick="go('contact')">Contact</span></li>
+    <li><span class="nl nl-cta" onclick="go('login')">Connexion</span></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:10px">
+    <div class="lang-sw">
+      <button class="lb active" onclick="setLang('fr')">FR</button>
+      <button class="lb" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HOME ═══ -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hglow"></div>
+    <div class="lbadge"><div class="ldot"></div><span data-lang="fr">Portail #1 des streamers</span><span data-lang="en">The #1 streamer portal</span></div>
+    <h1><span data-lang="fr">Streame mieux.<br><span class="grad">Grandis plus vite.</span></span><span data-lang="en">Stream better.<br><span class="grad">Grow faster.</span></span></h1>
+    <p class="hsub"><span data-lang="fr">Outils gratuits, communauté active et tutoriels exclusifs — tout ce qu'il faut pour exploser sur TikTok, Twitch, YouTube et Instagram.</span><span data-lang="en">Free tools, active community and exclusive tutorials — everything to blow up on TikTok, Twitch, YouTube and Instagram.</span></p>
+    <div class="hbtns">
+      <button class="btn" onclick="go('login')"><span data-lang="fr">Rejoindre gratuitement →</span><span data-lang="en">Join for free →</span></button>
+      <button class="btn-ghost" onclick="go('tools')"><span data-lang="fr">Voir les outils</span><span data-lang="en">Explore tools</span></button>
+    </div>
+    <div class="platrow"><span data-lang="fr">Compatible avec</span><span data-lang="en">Works with</span><div class="ptag">TikTok Live</div><div class="ptag">Twitch</div><div class="ptag">YouTube Live</div><div class="ptag">Instagram Live</div></div>
+  </div>
+
+  <div class="stats">
+    <div class="si"><span class="sico">🎮</span><span class="snum">10k+</span><div class="slbl" data-lang="fr">Streamers actifs</div><div class="slbl" data-lang="en">Active streamers</div></div>
+    <div class="si"><span class="sico">🛠️</span><span class="snum">50+</span><div class="slbl" data-lang="fr">Outils</div><div class="slbl" data-lang="en">Tools</div></div>
+    <div class="si"><span class="sico">📚</span><span class="snum">30+</span><div class="slbl" data-lang="fr">Tutoriels</div><div class="slbl" data-lang="en">Tutorials</div></div>
+    <div class="si"><span class="sico">⚡</span><span class="snum">100%</span><div class="slbl" data-lang="fr">Gratuit</div><div class="slbl" data-lang="en">Free</div></div>
+  </div>
+
+  <div class="wrap">
+    <p class="stag"><span data-lang="fr">Ce qu'on t'offre</span><span data-lang="en">What we offer</span></p>
+    <h2><span data-lang="fr">Tout pour réussir tes lives</span><span data-lang="en">Everything to crush your streams</span></h2>
+    <div class="fgrid">
+      <div class="fc" onclick="go('tools')"><span class="fci">🛠️</span><p class="fct" data-lang="fr">Outils gratuits</p><p class="fct" data-lang="en">Free tools</p><p class="fcd" data-lang="fr">Timer, compteur de viewers, overlay, générateur de titres et plus.</p><p class="fcd" data-lang="en">Timer, viewer counter, overlay, title generator and more.</p></div>
+      <div class="fc" onclick="go('tutos')"><span class="fci">📚</span><p class="fct" data-lang="fr">Tutoriels complets</p><p class="fct" data-lang="en">Full tutorials</p><p class="fcd" data-lang="fr">Guides détaillés pour débuter, progresser et monétiser tes lives.</p><p class="fcd" data-lang="en">Detailed guides to start, grow and monetize your streams.</p></div>
+      <div class="fc" onclick="go('community')"><span class="fci">👾</span><p class="fct" data-lang="fr">Communauté</p><p class="fct" data-lang="en">Community</p><p class="fcd" data-lang="fr">Rejoins des milliers de streamers, trouve des co-streamers, grandis ensemble.</p><p class="fcd" data-lang="en">Join thousands of streamers, find co-streamers, grow together.</p></div>
+      <div class="fc" onclick="go('login')"><span class="fci">👤</span><p class="fct" data-lang="fr">Ton compte</p><p class="fct" data-lang="en">Your account</p><p class="fcd" data-lang="fr">Crée ton profil streamer et accède à toutes les ressources.</p><p class="fcd" data-lang="en">Create your streamer profile and access all resources.</p></div>
+    </div>
+  </div>
+
+  <div class="fullbg">
+    <div class="wrap">
+      <p class="stag"><span data-lang="fr">Multi-plateformes</span><span data-lang="en">Multi-platform</span></p>
+      <h2><span data-lang="fr">Peu importe où tu streames</span><span data-lang="en">No matter where you stream</span></h2>
+      <div class="pgrid">
+        <div class="pc tiktok"><span class="pce">🎵</span><p class="pcn">TikTok Live</p><span class="pcb b-t" data-lang="fr">+ Populaire</span><span class="pcb b-t" data-lang="en">Most popular</span><p class="pcd" data-lang="fr" style="margin-top:8px">Gestion des cadeaux, filtres de commentaires, stratégies de croissance rapide.</p><p class="pcd" data-lang="en" style="margin-top:8px">Gift management, comment filters, rapid growth strategies.</p></div>
+        <div class="pc twitch"><span class="pce">🎮</span><p class="pcn">Twitch</p><span class="pcb b-tw">Gaming</span><p class="pcd" data-lang="fr" style="margin-top:8px">Bots de chat, raids et hosts pour maximiser l'engagement.</p><p class="pcd" data-lang="en" style="margin-top:8px">Chat bots, raids and hosts to maximize engagement.</p></div>
+        <div class="pc youtube"><span class="pce">▶️</span><p class="pcn">YouTube Live</p><span class="pcb b-y" data-lang="fr">Longue durée</span><span class="pcb b-y" data-lang="en">Long format</span><p class="pcd" data-lang="fr" style="margin-top:8px">Optimisation des titres, superchats et stratégie de long terme.</p><p class="pcd" data-lang="en" style="margin-top:8px">Title optimization, superchats and long-term strategy.</p></div>
+        <div class="pc insta"><span class="pce">📸</span><p class="pcn">Instagram Live</p><span class="pcb b-i">Lifestyle</span><p class="pcd" data-lang="fr" style="margin-top:8px">Mise en scène, collab créateurs et boost de viewers organiques.</p><p class="pcd" data-lang="en" style="margin-top:8px">Staging, creator collabs and organic viewer boosting.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEWSLETTER HOME -->
+  <div class="wrap" style="padding-bottom:0">
+    <div class="nl-box">
+      <h3>📬 <span class="grad" data-lang="fr">Newsletter Stream Zone</span><span class="grad" data-lang="en">Stream Zone Newsletter</span></h3>
+      <p data-lang="fr">Reçois chaque semaine les meilleures astuces streaming directement dans ta boîte mail.</p>
+      <p data-lang="en">Get the best streaming tips every week directly in your inbox.</p>
+      <div class="nl-form">
+        <input class="nl-input" type="email" id="nl-home-email" placeholder="toi@email.com"/>
+        <button class="btn" style="padding:11px 20px;font-size:13px" onclick="doNewsletter('nl-home-email','nl-home-msg')"><span data-lang="fr">S'abonner →</span><span data-lang="en">Subscribe →</span></button>
+      </div>
+      <p id="nl-home-msg" style="margin-top:10px;font-size:13px;color:#34d399;display:none" data-lang="fr">✅ Merci ! Tu es bien inscrit.</p>
+      <p id="nl-home-msg" style="margin-top:10px;font-size:13px;color:#34d399;display:none" data-lang="en">✅ Thanks! You're now subscribed.</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <p class="stag"><span data-lang="fr">Ils nous font confiance</span><span data-lang="en">They trust us</span></p>
+    <h2><span data-lang="fr">Des streamers qui progressent</span><span data-lang="en">Streamers who level up</span></h2>
+    <div class="tgrid">
+      <div class="tc"><div class="stars">★★★★★</div><p class="tt" data-lang="fr">"Mes viewers ont doublé en 2 mois. Les outils sont vraiment efficaces."</p><p class="tt" data-lang="en">"My viewers doubled in 2 months. The tools are genuinely effective."</p><div class="ta"><div class="ava av1">KD</div><div><p class="an">Karim_D</p><p class="ai">TikTok · 45k viewers</p></div></div></div>
+      <div class="tc"><div class="stars">★★★★★</div><p class="tt" data-lang="fr">"La communauté est incroyable. J'ai trouvé des co-streamers top."</p><p class="tt" data-lang="en">"The community is incredible. I found great co-streamers."</p><div class="ta"><div class="ava av2">SL</div><div><p class="an">SofiaLive</p><p class="ai">Twitch · 1 an de stream</p></div></div></div>
+      <div class="tc"><div class="stars">★★★★★</div><p class="tt" data-lang="fr">"En une semaine j'ai fait mon premier live et récolté mes premiers abonnés."</p><p class="tt" data-lang="en">"In one week I did my first live and got my first subscribers."</p><div class="ta"><div class="ava av3">MB</div><div><p class="an">Moussa.B</p><p class="ai">YouTube · Débutant</p></div></div></div>
+    </div>
+  </div>
+
+  <div class="wrap" style="padding-top:0">
+    <div class="ctabox">
+      <h2><span data-lang="fr">Prêt à exploser ?</span><span data-lang="en">Ready to blow up?</span> <span class="fbadge">FREE</span></h2>
+      <p style="color:var(--muted);margin-bottom:1.5rem;font-size:14px"><span data-lang="fr">Accès complet, aucun frais caché.</span><span data-lang="en">Full access, no hidden fees.</span></p>
+      <button class="btn" onclick="go('login')"><span data-lang="fr">Créer mon compte →</span><span data-lang="en">Create my account →</span></button>
+    </div>
+  </div>
+  <footer>
+    <p style="margin-bottom:10px">
+      <span class="flink" onclick="go('home')" data-lang="fr">Accueil</span><span class="flink" onclick="go('home')" data-lang="en">Home</span> · <span class="flink" onclick="go('tutos')" data-lang="fr">Tutoriels</span><span class="flink" onclick="go('tutos')" data-lang="en">Tutorials</span> · <span class="flink" onclick="go('tools')" data-lang="fr">Outils</span><span class="flink" onclick="go('tools')" data-lang="en">Tools</span> · <span class="flink" onclick="go('community')" data-lang="fr">Communauté</span><span class="flink" onclick="go('community')" data-lang="en">Community</span> · <span class="flink" onclick="go('about')" data-lang="fr">À propos</span><span class="flink" onclick="go('about')" data-lang="en">About</span> · <span class="flink" onclick="go('contact')">Contact</span>
+    </p>
+    <p>© 2026 Filippo Oda Stream Zone — <span data-lang="fr">Fait avec ❤️ pour les créateurs</span><span data-lang="en">Made with ❤️ for creators</span></p>
+  </footer>
+</div>
+
+<!-- ═══ TUTORIELS ═══ -->
+<div id="page-tutos" class="page">
+  <div class="phero">
+    <p class="stag" style="text-align:center"><span data-lang="fr">Apprendre</span><span data-lang="en">Learn</span></p>
+    <h1><span class="grad" data-lang="fr">Tutoriels Streamers</span><span class="grad" data-lang="en">Streamer Tutorials</span></h1>
+    <p data-lang="fr">Des guides complets et détaillés pour tous les niveaux et toutes les plateformes.</p>
+    <p data-lang="en">Complete and detailed guides for all levels and all platforms.</p>
+  </div>
+  <div class="wrap" style="padding-top:1rem">
+    <button class="back-btn" onclick="go('home')">← <span data-lang="fr">Accueil</span><span data-lang="en">Home</span></button>
+    <div class="tfilters">
+      <button class="fbtn active" onclick="fTuto('all',this)"><span data-lang="fr">Tous</span><span data-lang="en">All</span></button>
+      <button class="fbtn" onclick="fTuto('tiktok',this)">🎵 TikTok</button>
+      <button class="fbtn" onclick="fTuto('twitch',this)">🎮 Twitch</button>
+      <button class="fbtn" onclick="fTuto('youtube',this)">▶️ YouTube</button>
+      <button class="fbtn" onclick="fTuto('insta',this)">📸 Instagram</button>
+      <button class="fbtn" onclick="fTuto('general',this)"><span data-lang="fr">Général</span><span data-lang="en">General</span></button>
+    </div>
+    <div class="tutogrid" id="tutogrid" class="tutogrid">
+      <div class="tucard" data-cat="tiktok" onclick="openTuto('tuto1')"><div class="tuthumb tb-tiktok"><span>🎵</span><span class="tlvl lv-d" data-lang="fr">Débutant</span><span class="tlvl lv-d" data-lang="en">Beginner</span></div><div class="tubody"><p class="tupl">TikTok Live</p><p class="tuti"><span data-lang="fr">Faire son premier TikTok Live</span><span data-lang="en">Your First TikTok Live</span></p><p class="tude"><span data-lang="fr">Guide complet avec vidéo pour lancer ton premier live.</span><span data-lang="en">Full guide with video to launch your first live.</span></p><div class="tumt"><span>▶️ Vidéo incluse</span><div class="tudot"></div><span>8 min</span></div></div></div>
+
+      <div class="tucard" data-cat="general" onclick="openTuto('tuto2')"><div class="tuthumb tb-general"><span>🎙️</span><span class="tlvl lv-i" data-lang="fr">Intermédiaire</span><span class="tlvl lv-i" data-lang="en">Intermediate</span></div><div class="tubody"><p class="tupl">Général</p><p class="tuti"><span data-lang="fr">Optimiser son setup streaming</span><span data-lang="en">Optimize your setup</span></p><p class="tude"><span data-lang="fr">Son, caméra, éclairage, connexion — tout optimiser.</span><span data-lang="en">Sound, camera, lighting, connection — optimize everything.</span></p><div class="tumt"><span>▶️ Vidéo incluse</span><div class="tudot"></div><span>12 min</span></div></div></div>
+
+      <div class="tucard" data-cat="twitch" onclick="openTuto('tuto3')"><div class="tuthumb tb-twitch"><span>🎮</span><span class="tlvl lv-d" data-lang="fr">Débutant</span><span class="tlvl lv-d" data-lang="en">Beginner</span></div><div class="tubody"><p class="tupl">Twitch</p><p class="tuti"><span data-lang="fr">Débuter sur Twitch en 2026</span><span data-lang="en">Start on Twitch in 2026</span></p><p class="tude"><span data-lang="fr">Tout ce qu'il faut savoir pour commencer sur Twitch.</span><span data-lang="en">Everything you need to know to start on Twitch.</span></p><div class="tumt"><span>▶️ Vidéo incluse</span><div class="tudot"></div><span>10 min</span></div></div></div>
+
+      <div class="tucard" data-cat="general" onclick="openTuto('tuto4')"><div class="tuthumb tb-general"><span>🖥️</span><span class="tlvl lv-d" data-lang="fr">Débutant</span><span class="tlvl lv-d" data-lang="en">Beginner</span></div><div class="tubody"><p class="tupl">Général</p><p class="tuti"><span data-lang="fr">Créer ses overlays gratuitement</span><span data-lang="en">Create overlays for free</span></p><p class="tude"><span data-lang="fr">Des overlays pro sans dépenser un centime.</span><span data-lang="en">Pro overlays without spending a cent.</span></p><div class="tumt"><span>▶️ Vidéo incluse</span><div class="tudot"></div><span>6 min</span></div></div></div>
+
+      <div class="tucard" data-cat="youtube" onclick="openTuto('tuto5')"><div class="tuthumb tb-youtube"><span>▶️</span><span class="tlvl lv-i" data-lang="fr">Intermédiaire</span><span class="tlvl lv-i" data-lang="en">Intermediate</span></div><div class="tubody"><p class="tupl">YouTube Live</p><p class="tuti"><span data-lang="fr">Grandir sur YouTube Live</span><span data-lang="en">Grow on YouTube Live</span></p><p class="tude"><span data-lang="fr">Stratégie SEO et croissance sur YouTube Live.</span><span data-lang="en">SEO strategy and growth on YouTube Live.</span></p><div class="tumt"><span>▶️ Vidéo incluse</span><div class="tudot"></div><span>14 min</span></div></div></div>
+
+      <div class="tucard" data-cat="general" onclick="openTuto('tuto6')"><div class="tuthumb tb-general"><span>🔧</span><span class="tlvl lv-i" data-lang="fr">Intermédiaire</span><span class="tlvl lv-i" data-lang="en">Intermediate</span></div><div class="tubody"><p class="tupl">Général</p><p class="tuti"><span data-lang="fr">Maîtriser OBS Studio</span><span data-lang="en">Master OBS Studio</span></p><p class="tude"><span data-lang="fr">Le logiciel de streaming gratuit le plus puissant au monde.</span><span data-lang="en">The world's most powerful free streaming software.</span></p><div class="tumt"><span>▶️ Vidéo incluse</span><div class="tudot"></div><span>15 min</span></div></div></div>
+
+      <div class="tucard" data-cat="general" onclick="openTuto('tuto7')"><div class="tuthumb tb-general"><span>💰</span><span class="tlvl lv-a" data-lang="fr">Avancé</span><span class="tlvl lv-a" data-lang="en">Advanced</span></div><div class="tubody"><p class="tupl">Général</p><p class="tuti"><span data-lang="fr">Monétiser ses lives en 2026</span><span data-lang="en">Monetize your streams in 2026</span></p><p class="tude"><span data-lang="fr">Dons, abonnements, sponsorings et merchandise expliqués.</span><span data-lang="en">Donations, subscriptions, sponsorships and merchandise explained.</span></p><div class="tumt"><span>▶️ Vidéo incluse</span><div class="tudot"></div><span>18 min</span></div></div></div>
+    </div>
+
+    <!-- TUTO DETAIL -->
+    <div id="tuto-detail" class="tuto-detail">
+      <button class="back-btn" onclick="closeTuto()">← <span data-lang="fr">Retour aux tutoriels</span><span data-lang="en">Back to tutorials</span></button>
+      <div id="tuto-content" class="tuto-content"></div>
+    </div>
+  </div>
+  <footer><p>© 2026 Filippo Oda Stream Zone · <span class="flink" onclick="go('home')"><span data-lang="fr">Accueil</span><span data-lang="en">Home</span></span></p></footer>
+</div>
+
+<!-- ═══ OUTILS ═══ -->
+<div id="page-tools" class="page">
+  <div class="phero">
+    <p class="stag" style="text-align:center"><span data-lang="fr">Boîte à outils</span><span data-lang="en">Toolbox</span></p>
+    <h1><span class="grad" data-lang="fr">Outils Gratuits</span><span class="grad" data-lang="en">Free Tools</span></h1>
+    <p data-lang="fr">Utilise-les directement ici — aucune installation requise.</p>
+    <p data-lang="en">Use them directly here — no installation required.</p>
+  </div>
+  <div class="wrap" style="padding-top:1rem">
+    <button class="back-btn" onclick="go('home')">← <span data-lang="fr">Accueil</span><span data-lang="en">Home</span></button>
+    <div class="toolsgrid">
+      <div class="toolcard"><span class="toi">⏱️</span><p class="ton" data-lang="fr">Timer de Live</p><p class="ton" data-lang="en">Live Timer</p><p class="tod" data-lang="fr">Chronomètre pour gérer la durée de ton live.</p><p class="tod" data-lang="en">Stopwatch to manage your live duration.</p><div class="widget"><div class="tdisp" id="tmr">00:00:00</div><div class="tctrls"><button class="tbtn go" id="tmr-btn" onclick="tToggle()"><span data-lang="fr">▶ Démarrer</span><span data-lang="en">▶ Start</span></button><button class="tbtn" onclick="tReset()"><span data-lang="fr">↺ Reset</span><span data-lang="en">↺ Reset</span></button></div></div></div>
+
+      <div class="toolcard"><span class="toi">👥</span><p class="ton" data-lang="fr">Compteur de Viewers</p><p class="ton" data-lang="en">Viewer Counter</p><p class="tod" data-lang="fr">Suis manuellement ton nombre de viewers.</p><p class="tod" data-lang="en">Manually track your viewer count.</p><div class="widget"><span class="cnum" id="cnt">0</span><div class="tctrls"><button class="tbtn" onclick="cChange(-10)">-10</button><button class="tbtn" onclick="cChange(-1)">-1</button><button class="tbtn go" onclick="cChange(1)">+1</button><button class="tbtn go" onclick="cChange(10)">+10</button></div></div></div>
+
+      <div class="toolcard"><span class="toi">🎨</span><p class="ton" data-lang="fr">Générateur d'Overlay</p><p class="ton" data-lang="en">Overlay Generator</p><p class="tod" data-lang="fr">Crée un texte d'overlay personnalisé pour ton stream.</p><p class="tod" data-lang="en">Create a custom overlay text for your stream.</p><div class="widget"><div class="ovprev" id="ovprev" style="color:#00cfff">FILIPPO ODA STREAM ZONE</div><input class="ovinput" id="ovtxt" type="text" value="FILIPPO ODA STREAM ZONE" placeholder="Ton texte..." oninput="updOv()"/><div class="colors"><div class="co sel" style="background:#00cfff" onclick="setCol('#00cfff',this)"></div><div class="co" style="background:#ff6b6b" onclick="setCol('#ff6b6b',this)"></div><div class="co" style="background:#fbbf24" onclick="setCol('#fbbf24',this)"></div><div class="co" style="background:#34d399" onclick="setCol('#34d399',this)"></div><div class="co" style="background:#bf94ff" onclick="setCol('#bf94ff',this)"></div><div class="co" style="background:#fff" onclick="setCol('#fff',this)"></div></div><button class="toolbtn" onclick="copyOv()">📋 <span data-lang="fr">Copier</span><span data-lang="en">Copy</span></button></div></div>
+
+      <div class="toolcard"><span class="toi">✍️</span><p class="ton" data-lang="fr">Générateur de Titre</p><p class="ton" data-lang="en">Title Generator</p><p class="tod" data-lang="fr">Génère des titres accrocheurs pour tes lives.</p><p class="tod" data-lang="en">Generate catchy titles for your lives.</p><div class="widget"><div class="ovprev" id="titprev" style="color:#fbbf24;font-size:.85rem;font-family:'Exo 2',sans-serif;font-weight:600" data-lang="fr">Clique sur Générer !</div><div class="ovprev" id="titprev-en" style="color:#fbbf24;font-size:.85rem;font-family:'Exo 2',sans-serif;font-weight:600;display:none">Click Generate!</div><select class="ovinput" id="titplat"><option value="tiktok">🎵 TikTok Live</option><option value="twitch">🎮 Twitch</option><option value="youtube">▶️ YouTube Live</option><option value="insta">📸 Instagram</option></select><button class="toolbtn" style="width:100%;justify-content:center" onclick="genTit()">⚡ <span data-lang="fr">Générer un titre</span><span data-lang="en">Generate title</span></button></div></div>
+
+      <div class="toolcard"><span class="toi">🚀</span><p class="ton" data-lang="fr">Compte à Rebours</p><p class="ton" data-lang="en">Countdown Timer</p><p class="tod" data-lang="fr">Lance un compte à rebours avant ton live.</p><p class="tod" data-lang="en">Start a countdown before going live.</p><div class="widget"><div class="tdisp" id="cddisp" style="font-size:2rem">05:00</div><div class="tctrls" style="margin-bottom:8px"><button class="tbtn" onclick="setCd(1)">1 min</button><button class="tbtn" onclick="setCd(3)">3 min</button><button class="tbtn" onclick="setCd(5)">5 min</button><button class="tbtn" onclick="setCd(10)">10 min</button></div><div class="tctrls"><button class="tbtn go" id="cd-btn" onclick="cdToggle()"><span data-lang="fr">▶ Lancer</span><span data-lang="en">▶ Start</span></button><button class="tbtn" onclick="cdReset()"><span data-lang="fr">↺ Reset</span><span data-lang="en">↺ Reset</span></button></div></div></div>
+
+      <div class="toolcard"><span class="toi">✅</span><p class="ton" data-lang="fr">Checklist Pré-Live</p><p class="ton" data-lang="en">Pre-Live Checklist</p><p class="tod" data-lang="fr">Vérifie que tout est prêt avant de lancer ton live.</p><p class="tod" data-lang="en">Make sure everything is ready before going live.</p><div class="widget" id="clwidget"></div></div>
+
+      <!-- OUTIL: Calculateur de bitrate -->
+      <div class="toolcard"><span class="toi">📡</span>
+        <p class="ton" data-lang="fr">Calculateur de Bitrate</p>
+        <p class="ton" data-lang="en">Bitrate Calculator</p>
+        <p class="tod" data-lang="fr">Calcule le bitrate optimal selon ta résolution et tes FPS.</p>
+        <p class="tod" data-lang="en">Calculate optimal bitrate based on resolution and FPS.</p>
+        <div class="widget">
+          <div style="margin-bottom:8px">
+            <label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px" data-lang="fr">Résolution</label>
+            <label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px" data-lang="en">Resolution</label>
+            <select id="br-res" class="ovinput" style="margin-bottom:8px" onchange="calcBitrate()">
+              <option value="720">720p (HD)</option>
+              <option value="1080" selected>1080p (Full HD)</option>
+              <option value="1440">1440p (2K)</option>
+            </select>
+            <label style="font-size:12px;color:var(--muted);display:block;margin-bottom:4px">FPS</label>
+            <select id="br-fps" class="ovinput" onchange="calcBitrate()">
+              <option value="30">30 FPS</option>
+              <option value="60" selected>60 FPS</option>
+            </select>
+          </div>
+          <div style="text-align:center;margin:12px 0">
+            <span style="font-size:11px;color:var(--muted)" data-lang="fr">Bitrate recommandé</span>
+            <span style="font-size:11px;color:var(--muted)" data-lang="en">Recommended bitrate</span>
+            <div class="tdisp" id="br-result">6000 kbps</div>
+          </div>
+          <div style="font-size:12px;color:var(--muted);text-align:center" id="br-note">Pour TikTok / Twitch / YouTube</div>
+        </div>
+      </div>
+
+      <!-- OUTIL: Générateur de hashtags -->
+      <div class="toolcard"><span class="toi">#️⃣</span>
+        <p class="ton" data-lang="fr">Générateur de Hashtags</p>
+        <p class="ton" data-lang="en">Hashtag Generator</p>
+        <p class="tod" data-lang="fr">Génère des hashtags optimisés pour booster ton live.</p>
+        <p class="tod" data-lang="en">Generate optimized hashtags to boost your live.</p>
+        <div class="widget">
+          <select id="ht-plat" class="ovinput" style="margin-bottom:8px">
+            <option value="tiktok">TikTok</option>
+            <option value="twitch">Twitch</option>
+            <option value="youtube">YouTube</option>
+            <option value="instagram">Instagram</option>
+          </select>
+          <input id="ht-theme" class="ovinput" placeholder="Thème (ex: gaming, cuisine...)" />
+          <button class="tbtn go" style="width:100%;margin-top:8px" onclick="genHashtags()">
+            <span data-lang="fr">Générer →</span><span data-lang="en">Generate →</span>
+          </button>
+          <div id="ht-result" style="margin-top:10px;font-size:12px;color:var(--accent);line-height:1.8;word-break:break-all"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <footer><p>© 2026 Filippo Oda Stream Zone · <span class="flink" onclick="go('home')"><span data-lang="fr">Accueil</span><span data-lang="en">Home</span></span></p></footer>
+</div>
+
+<!-- ═══ COMMUNAUTÉ ═══ -->
+<div id="page-community" class="page">
+  <div class="phero">
+    <p class="stag" style="text-align:center"><span data-lang="fr">Ensemble</span><span data-lang="en">Together</span></p>
+    <h1><span class="grad" data-lang="fr">La Communauté</span><span class="grad" data-lang="en">The Community</span></h1>
+    <p data-lang="fr">Rejoins des milliers de streamers, collabore et grandis ensemble.</p>
+    <p data-lang="en">Join thousands of streamers, collaborate and grow together.</p>
+  </div>
+  <div class="wrap" style="padding-top:1rem">
+    <button class="back-btn" onclick="go('home')">← <span data-lang="fr">Accueil</span><span data-lang="en">Home</span></button>
+    <div class="discbox">
+      <h3>💬 Discord <span class="grad">Stream Zone</span></h3>
+      <p data-lang="fr">Rejoins notre serveur Discord pour chatter en temps réel avec d'autres streamers.</p>
+      <p data-lang="en">Join our Discord server to chat in real time with other streamers.</p>
+      <button class="discbtn" onclick="alert('Lien Discord bientôt disponible !')"><span data-lang="fr">Rejoindre le Discord →</span><span data-lang="en">Join Discord →</span></button>
+    </div>
+    <div class="cgrid">
+      <div class="ccard">
+        <p class="ctitle"><div class="odot"></div><span data-lang="fr">Membres en ligne</span><span data-lang="en">Members online</span></p>
+        <div class="mlist">
+          <div class="mitem"><div class="ava av1" style="width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">KD</div><div><p class="mn">Karim_D</p><p class="mp">🎵 TikTok · 45k viewers</p></div><span class="mb" style="background:rgba(52,211,153,.15);color:#34d399">PRO</span></div>
+          <div class="mitem"><div class="ava av2" style="width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">SL</div><div><p class="mn">SofiaLive</p><p class="mp">🎮 Twitch · Gaming</p></div><span class="mb" style="background:rgba(251,191,36,.15);color:#fbbf24">⭐ ACTIF</span></div>
+          <div class="mitem"><div class="ava av3" style="width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">MB</div><div><p class="mn">Moussa.B</p><p class="mp">▶️ YouTube · Débutant</p></div><span class="mb" style="background:rgba(0,207,255,.1);color:#00cfff">NEW</span></div>
+          <div class="mitem"><div class="ava av4" style="width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">LR</div><div><p class="mn">LeilaRose</p><p class="mp">📸 Instagram · Lifestyle</p></div><span class="mb" style="background:rgba(52,211,153,.15);color:#34d399">PRO</span></div>
+        </div>
+      </div>
+      <div class="ccard">
+        <p class="ctitle">🔥 <span data-lang="fr">Posts récents</span><span data-lang="en">Recent posts</span></p>
+        <div class="plist">
+          <div class="pitem"><p class="ptit" data-lang="fr">💡 Comment garder son audience pendant 2h de live</p><p class="ptit" data-lang="en">💡 How to keep your audience for 2h of live</p><div class="pmeta"><span>Karim_D</span><span data-lang="fr">il y a 2h</span><span data-lang="en">2h ago</span><span>👍 34</span></div></div>
+          <div class="pitem"><p class="ptit" data-lang="fr">❓ Meilleur micro débutant sous 50€ ?</p><p class="ptit" data-lang="en">❓ Best beginner mic under €50?</p><div class="pmeta"><span>Moussa.B</span><span data-lang="fr">il y a 4h</span><span data-lang="en">4h ago</span><span>💬 12</span></div></div>
+          <div class="pitem"><p class="ptit" data-lang="fr">🎉 J'ai atteint 1000 abonnés ce soir !</p><p class="ptit" data-lang="en">🎉 I hit 1000 followers tonight!</p><div class="pmeta"><span>SofiaLive</span><span data-lang="fr">il y a 6h</span><span data-lang="en">6h ago</span><span>❤️ 89</span></div></div>
+          <div class="pitem"><p class="ptit" data-lang="fr">🔴 Live ce soir à 20h sur TikTok !</p><p class="ptit" data-lang="en">🔴 Going live tonight at 8pm on TikTok!</p><div class="pmeta"><span>LeilaRose</span><span data-lang="fr">il y a 1h</span><span data-lang="en">1h ago</span><span>🔔 21</span></div></div>
+        </div>
+      </div>
+    </div>
+    <p class="stag" style="margin-top:2rem"><span data-lang="fr">Co-streaming</span><span data-lang="en">Co-streaming</span></p>
+    <h2><span data-lang="fr">Trouve des co-streamers</span><span data-lang="en">Find co-streamers</span></h2>
+    <p class="sub"><span data-lang="fr">Trouve des streamers pour raids, co-lives et échanges de communautés.</span><span data-lang="en">Find streamers for raids, co-lives and community exchanges.</span></p>
+    <div class="collgrid">
+      <div class="collcard"><div class="collh"><div class="ava av1" style="width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700">KD</div><div><p class="colln">Karim_D</p><p class="collp">🎵 TikTok Live</p></div></div><p class="colld" data-lang="fr">Cherche streamers pour co-live sur TikTok — gaming et humour. 45k viewers.</p><p class="colld" data-lang="en">Looking for co-live on TikTok — gaming and humor. 45k viewers.</p><button class="collbtn" onclick="go('login')"><span data-lang="fr">Contacter →</span><span data-lang="en">Contact →</span></button></div>
+      <div class="collcard"><div class="collh"><div class="ava av2" style="width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700">SL</div><div><p class="colln">SofiaLive</p><p class="collp">🎮 Twitch</p></div></div><p class="colld" data-lang="fr">Disponible pour raids sur Twitch. Spécialité RPG et jeux indés.</p><p class="colld" data-lang="en">Available for raids on Twitch. Speciality RPG and indie games.</p><button class="collbtn" onclick="go('login')"><span data-lang="fr">Contacter →</span><span data-lang="en">Contact →</span></button></div>
+      <div class="collcard"><div class="collh"><div class="ava av4" style="width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700">LR</div><div><p class="colln">LeilaRose</p><p class="collp">📸 Instagram Live</p></div></div><p class="colld" data-lang="fr">Cherche collabs lifestyle/beauté sur Instagram. 12k abonnés.</p><p class="colld" data-lang="en">Looking for lifestyle/beauty collabs on Instagram. 12k followers.</p><button class="collbtn" onclick="go('login')"><span data-lang="fr">Contacter →</span><span data-lang="en">Contact →</span></button></div>
+    </div>
+  </div>
+  <footer><p>© 2026 Filippo Oda Stream Zone · <span class="flink" onclick="go('home')"><span data-lang="fr">Accueil</span><span data-lang="en">Home</span></span></p></footer>
+</div>
+
+<!-- ═══ À PROPOS ═══ -->
+<div id="page-about" class="page">
+  <div class="phero">
+    <p class="stag" style="text-align:center"><span data-lang="fr">Qui sommes-nous</span><span data-lang="en">Who we are</span></p>
+    <h1><span class="grad">Filippo Oda</span></h1>
+    <p data-lang="fr">Le créateur derrière Stream Zone</p>
+    <p data-lang="en">The creator behind Stream Zone</p>
+  </div>
+  <div class="wrap" style="padding-top:1rem">
+    <button class="back-btn" onclick="go('home')">← <span data-lang="fr">Accueil</span><span data-lang="en">Home</span></button>
+    <div class="about-grid">
+      <div>
+        <div class="about-avatar">
+          <div class="big-ava">FO</div>
+          <p class="about-name">Filippo Oda</p>
+          <p class="about-role" data-lang="fr">Fondateur & Streamer</p>
+          <p class="about-role" data-lang="en">Founder & Streamer</p>
+          <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:8px">
+            <div style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px"><span>🎵</span> TikTok Live</div>
+            <div style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px"><span>🎮</span> Twitch</div>
+            <div style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px"><span>▶️</span> YouTube Live</div>
+            <div style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px"><span>📸</span> Instagram Live</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-content">
+        <h3 data-lang="fr">Mon histoire</h3>
+        <h3 data-lang="en">My story</h3>
+        <p data-lang="fr">Passionné de streaming depuis plusieurs années, j'ai créé Filippo Oda Stream Zone pour répondre à un besoin simple : avoir un seul endroit qui regroupe tous les outils, tutoriels et ressources dont un streamer a besoin, quelle que soit sa plateforme.</p>
+        <p data-lang="en">Passionate about streaming for several years, I created Filippo Oda Stream Zone to address a simple need: having one place that brings together all the tools, tutorials and resources a streamer needs, regardless of their platform.</p>
+        <p data-lang="fr">J'ai commencé à streamer avec très peu de moyens, beaucoup de motivation et aucune ressource claire. J'aurais adoré avoir accès à une plateforme comme celle-ci. Alors je l'ai construite pour toi.</p>
+        <p data-lang="en">I started streaming with very little means, a lot of motivation and no clear resources. I would have loved to have access to a platform like this. So I built it for you.</p>
+        <h3 data-lang="fr">La mission</h3>
+        <h3 data-lang="en">The mission</h3>
+        <p data-lang="fr">Rendre le streaming accessible à tous — débutants ou pros, peu importe la plateforme. Offrir gratuitement les mêmes ressources que les streamers professionnels utilisent chaque jour.</p>
+        <p data-lang="en">Make streaming accessible to everyone — beginners or pros, regardless of platform. Freely provide the same resources that professional streamers use every day.</p>
+        <div class="about-vals">
+          <div class="val-item"><span class="val-ico">🆓</span><p class="val-name" data-lang="fr">100% Gratuit</p><p class="val-name" data-lang="en">100% Free</p><p class="val-desc" data-lang="fr">Aucun frais caché, jamais.</p><p class="val-desc" data-lang="en">No hidden fees, ever.</p></div>
+          <div class="val-item"><span class="val-ico">🌍</span><p class="val-name" data-lang="fr">Multilingue</p><p class="val-name" data-lang="en">Multilingual</p><p class="val-desc" data-lang="fr">FR et EN pour tous.</p><p class="val-desc" data-lang="en">FR and EN for everyone.</p></div>
+          <div class="val-item"><span class="val-ico">🤝</span><p class="val-name" data-lang="fr">Communauté</p><p class="val-name" data-lang="en">Community</p><p class="val-desc" data-lang="fr">Grandis avec d'autres.</p><p class="val-desc" data-lang="en">Grow with others.</p></div>
+          <div class="val-item"><span class="val-ico">⚡</span><p class="val-name" data-lang="fr">Simple & rapide</p><p class="val-name" data-lang="en">Simple & fast</p><p class="val-desc" data-lang="fr">Aucune installation.</p><p class="val-desc" data-lang="en">No installation needed.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer><p>© 2026 Filippo Oda Stream Zone · <span class="flink" onclick="go('home')"><span data-lang="fr">Accueil</span><span data-lang="en">Home</span></span></p></footer>
+</div>
+
+<!-- ═══ CONTACT ═══ -->
+<div id="page-contact" class="page">
+  <div class="phero">
+    <p class="stag" style="text-align:center">Contact</p>
+    <h1><span class="grad" data-lang="fr">Nous contacter</span><span class="grad" data-lang="en">Contact us</span></h1>
+    <p data-lang="fr">Une question, une suggestion ou tu veux collaborer ? On te répond vite.</p>
+    <p data-lang="en">A question, suggestion or want to collaborate? We reply fast.</p>
+  </div>
+  <div class="wrap" style="padding-top:1rem">
+    <button class="back-btn" onclick="go('home')">← <span data-lang="fr">Accueil</span><span data-lang="en">Home</span></button>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3 data-lang="fr">Informations</h3>
+        <h3 data-lang="en">Information</h3>
+        <p data-lang="fr">N'hésite pas à nous contacter pour toute question, suggestion d'amélioration ou proposition de collaboration.</p>
+        <p data-lang="en">Don't hesitate to contact us for any question, improvement suggestion or collaboration proposal.</p>
+        <div class="cinfo-item"><span class="cinfo-ico">📧</span><div><p style="font-size:13px;font-weight:600">Email</p><p style="font-size:12px;color:var(--muted)"><a href="/cdn-cgi/l/email-protection#492f3c3b3d282d26313a202d2c31092e24282025672a2624" style="color:var(--accent);text-decoration:none"><span class="__cf_email__" data-cfemail="dabcafa8aebbbeb5a2a9b3bebfa29abdb7bbb3b6f4b9b5b7">[email&#160;protected]</span></a></p></div></div>
+        <div class="cinfo-item"><span class="cinfo-ico">📱</span><div><p style="font-size:13px;font-weight:600">WhatsApp / Téléphone</p><p style="font-size:12px;color:var(--muted)"><a href="tel:+221774359781" style="color:var(--accent);text-decoration:none">+221 77 435 97 81</a></p></div></div>
+        <div class="cinfo-item"><span class="cinfo-ico">🎵</span><div><p style="font-size:13px;font-weight:600">TikTok</p><p style="font-size:12px;color:var(--muted)"><a href="https://www.tiktok.com/@filippodatruf" target="_blank" style="color:var(--accent);text-decoration:none">@filippodatruf</a></p></div></div>
+        <div class="cinfo-item"><span class="cinfo-ico">⏱️</span><div><p style="font-size:13px;font-weight:600" data-lang="fr">Temps de réponse</p><p style="font-size:13px;font-weight:600" data-lang="en">Response time</p><p style="font-size:12px;color:var(--muted)" data-lang="fr">Sous 48h</p><p style="font-size:12px;color:var(--muted)" data-lang="en">Within 48h</p></div></div>
+        <div style="margin-top:2rem">
+          <div class="nl-box" style="text-align:left;padding:1.5rem">
+            <h3 style="font-size:.85rem;margin-bottom:.5rem">📬 <span data-lang="fr">Newsletter</span><span data-lang="en">Newsletter</span></h3>
+            <p style="font-size:13px;color:var(--muted);margin-bottom:1rem" data-lang="fr">Reçois les meilleures astuces chaque semaine.</p>
+            <p style="font-size:13px;color:var(--muted);margin-bottom:1rem" data-lang="en">Get the best tips every week.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <input class="nl-input" type="email" id="nl-contact-email" placeholder="toi@email.com" style="min-width:0;flex:1"/>
+              <button class="btn" style="padding:10px 18px;font-size:13px;white-space:nowrap" onclick="doNewsletter('nl-contact-email','nl-contact-msg')"><span data-lang="fr">S'abonner</span><span data-lang="en">Subscribe</span></button>
+            </div>
+            <p id="nl-contact-msg" style="margin-top:8px;font-size:12px;color:#34d399;display:none" data-lang="fr">✅ Merci, tu es inscrit !</p>
+            <p id="nl-contact-msg" style="margin-top:8px;font-size:12px;color:#34d399;display:none" data-lang="en">✅ Thanks, you're subscribed!</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:2rem">
+          <h3 style="font-family:var(--fh);font-size:.85rem;font-weight:700;margin-bottom:1.5rem" data-lang="fr">Envoyer un message</h3>
+          <h3 style="font-family:var(--fh);font-size:.85rem;font-weight:700;margin-bottom:1.5rem" data-lang="en">Send a message</h3>
+          <div id="contact-form">
+            <div class="fg"><label class="fl" data-lang="fr">Ton nom</label><label class="fl" data-lang="en">Your name</label><input class="fi" type="text" id="ct-name" placeholder="Ex: Karim"/></div>
+            <div class="fg"><label class="fl">Email</label><input class="fi" type="email" id="ct-email" placeholder="toi@email.com"/><div class="em" id="ct-em-err" data-lang="fr">Email invalide</div></div>
+            <div class="fg"><label class="fl" data-lang="fr">Sujet</label><label class="fl" data-lang="en">Subject</label>
+              <select class="fi" id="ct-subject">
+                <option value="Question générale">❓ Question générale</option>
+                <option value="Suggestion d'outil">🔧 Suggestion d'outil</option>
+                <option value="Proposition de collab">🤝 Proposition de collab</option>
+                <option value="Signaler un bug">🐛 Signaler un bug</option>
+                <option value="Autre">💬 Autre</option>
+              </select>
+            </div>
+            <div class="fg"><label class="fl" data-lang="fr">Message</label><label class="fl" data-lang="en">Message</label><textarea class="fi" id="ct-msg" rows="5" placeholder="Ton message..." style="resize:vertical"></textarea><div class="em" id="ct-msg-err" data-lang="fr">Message requis</div></div>
+            <p style="font-size:11px;color:var(--muted);margin-bottom:12px" data-lang="fr">📧 Le message s'ouvrira dans ton application mail avec l'adresse <strong>furtadoxsidex@gmail.com</strong> pré-remplie.</p>
+            <p style="font-size:11px;color:var(--muted);margin-bottom:12px" data-lang="en">📧 The message will open in your mail app with <strong>furtadoxsidex@gmail.com</strong> pre-filled.</p>
+            <button class="sbtn" onclick="sendContact()"><span data-lang="fr">📨 Envoyer le message</span><span data-lang="en">📨 Send message</span></button>
+          </div>
+          <div id="contact-success" style="display:none;text-align:center;padding:2rem 0">
+            <span style="font-size:3rem;display:block;margin-bottom:1rem">✅</span>
+            <p style="font-family:var(--fh);font-size:.9rem;font-weight:700;color:var(--accent);margin-bottom:.5rem" data-lang="fr">Message envoyé !</p>
+            <p style="font-family:var(--fh);font-size:.9rem;font-weight:700;color:var(--accent);margin-bottom:.5rem" data-lang="en">Message sent!</p>
+            <p style="font-size:13px;color:var(--muted)" data-lang="fr">On te répondra sous 48h.</p>
+            <p style="font-size:13px;color:var(--muted)" data-lang="en">We'll reply within 48h.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer><p>© 2026 Filippo Oda Stream Zone · <span class="flink" onclick="go('home')"><span data-lang="fr">Accueil</span><span data-lang="en">Home</span></span></p></footer>
+</div>
+
+<!-- ═══ CONNEXION ═══ -->
+<div id="page-login" class="page">
+  <div class="authcenter">
+    <div class="authcard">
+      <button class="back-btn" onclick="go('home')">← <span data-lang="fr">Accueil</span><span data-lang="en">Home</span></button>
+      <div class="atabs">
+        <button class="atab active" onclick="swTab('si')"><span data-lang="fr">Connexion</span><span data-lang="en">Log in</span></button>
+        <button class="atab" onclick="swTab('su')"><span data-lang="fr">Inscription</span><span data-lang="en">Sign up</span></button>
+      </div>
+      <div class="aform active" id="f-si">
+        <span class="aico">🔐</span>
+        <p class="atit"><span data-lang="fr">Content de te revoir !</span><span data-lang="en">Welcome back!</span></p>
+        <p class="asub"><span data-lang="fr">Connecte-toi à ton compte</span><span data-lang="en">Log in to your account</span></p>
+        <div class="fg"><label class="fl">Email</label><input class="fi" type="email" id="si-em" placeholder="toi@email.com"/><div class="em" id="si-em-err" data-lang="fr">Email invalide</div><div class="em" id="si-em-err-en" data-lang="en">Invalid email</div></div>
+        <div class="fg"><label class="fl"><span data-lang="fr">Mot de passe</span><span data-lang="en">Password</span></label><input class="fi" type="password" id="si-pw" placeholder="••••••••"/><div class="em" id="si-pw-err" data-lang="fr">Champ requis</div><div class="em" id="si-pw-err-en" data-lang="en">Required field</div></div>
+        <button class="sbtn" onclick="doSI()"><span data-lang="fr">Se connecter →</span><span data-lang="en">Log in →</span></button>
+      </div>
+      <div class="aform" id="f-su">
+        <span class="aico">🎮</span>
+        <p class="atit"><span data-lang="fr">Rejoins la zone !</span><span data-lang="en">Join the zone!</span></p>
+        <p class="asub"><span data-lang="fr">Compte gratuit en 30 secondes</span><span data-lang="en">Free account in 30 seconds</span></p>
+        <div class="fg"><label class="fl"><span data-lang="fr">Pseudo streamer</span><span data-lang="en">Streamer name</span></label><input class="fi" type="text" id="su-ps" placeholder="Ex: KarimDLive"/><div class="em" id="su-ps-err" data-lang="fr">Champ requis</div><div class="em" id="su-ps-err-en" data-lang="en">Required</div></div>
+        <div class="fg"><label class="fl">Email</label><input class="fi" type="email" id="su-em" placeholder="toi@email.com"/><div class="em" id="su-em-err" data-lang="fr">Email invalide</div><div class="em" id="su-em-err-en" data-lang="en">Invalid email</div></div>
+        <div class="fg"><label class="fl"><span data-lang="fr">Mot de passe</span><span data-lang="en">Password</span></label><input class="fi" type="password" id="su-pw" placeholder="Min. 8 caractères"/><div class="em" id="su-pw-err" data-lang="fr">Min. 8 caractères</div><div class="em" id="su-pw-err-en" data-lang="en">Min. 8 characters</div></div>
+        <div class="fg">
+          <label class="fl"><span data-lang="fr">Plateformes</span><span data-lang="en">Platforms</span></label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+            <div onclick="togChk(this)" style="display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 10px;cursor:pointer"><input type="checkbox" style="width:15px;height:15px;accent-color:var(--accent)"/><span style="font-size:12px;font-weight:600">🎵 TikTok</span></div>
+            <div onclick="togChk(this)" style="display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 10px;cursor:pointer"><input type="checkbox" style="width:15px;height:15px;accent-color:var(--accent)"/><span style="font-size:12px;font-weight:600">🎮 Twitch</span></div>
+            <div onclick="togChk(this)" style="display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 10px;cursor:pointer"><input type="checkbox" style="width:15px;height:15px;accent-color:var(--accent)"/><span style="font-size:12px;font-weight:600">▶️ YouTube</span></div>
+            <div onclick="togChk(this)" style="display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 10px;cursor:pointer"><input type="checkbox" style="width:15px;height:15px;accent-color:var(--accent)"/><span style="font-size:12px;font-weight:600">📸 Instagram</span></div>
+          </div>
+        </div>
+        <button class="sbtn" onclick="doSU()"><span data-lang="fr">🚀 Créer mon compte gratuit</span><span data-lang="en">🚀 Create my free account</span></button>
+      </div>
+      <div class="succbox" id="auth-succ">
+        <span class="succico">🎉</span>
+        <h3><span data-lang="fr">Bienvenue <span class="auth-succ-name grad"></span> dans la zone !</span><span data-lang="en">Welcome <span class="auth-succ-name grad"></span> to the zone!</span></h3>
+        <p><span data-lang="fr">Ton compte a été créé avec succès.</span><span data-lang="en">Your account was created successfully.</span></p>
+        <br><button class="btn" onclick="go('home')" style="padding:11px 22px;font-size:13px;margin-top:1rem"><span data-lang="fr">← Retour à l'accueil</span><span data-lang="en">← Back to home</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── NAV ──
+function go(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById('page-'+p).classList.add('active');window.scrollTo(0,0);if(p==='tools')buildCL();setLang(document.body.className)}
+
+// ── LANG ──
+function setLang(l){document.body.className=l;document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('active',b.textContent===l.toUpperCase()))}
+
+// ── TIMER ──
+let tS=0,tR=false,tI=null;
+function tToggle(){tR=!tR;const b=document.getElementById('tmr-btn');if(tR){tI=setInterval(()=>{tS++;updT()},1000);b.innerHTML='<span data-lang="fr">⏸ Pause</span><span data-lang="en">⏸ Pause</span>'}else{clearInterval(tI);b.innerHTML='<span data-lang="fr">▶ Reprendre</span><span data-lang="en">▶ Resume</span>'}setLang(document.body.className)}
+function tReset(){clearInterval(tI);tR=false;tS=0;document.getElementById('tmr').textContent='00:00:00';document.getElementById('tmr-btn').innerHTML='<span data-lang="fr">▶ Démarrer</span><span data-lang="en">▶ Start</span>';setLang(document.body.className)}
+function updT(){const h=Math.floor(tS/3600),m=Math.floor((tS%3600)/60),s=tS%60;document.getElementById('tmr').textContent=`${p2(h)}:${p2(m)}:${p2(s)}`}
+function p2(n){return String(n).padStart(2,'0')}
+
+// ── COUNTER ──
+let cV=0;
+function cChange(n){cV=Math.max(0,cV+n);document.getElementById('cnt').textContent=cV}
+
+// ── OVERLAY ──
+function updOv(){document.getElementById('ovprev').textContent=document.getElementById('ovtxt').value||'Ton overlay...'}
+function setCol(c,el){document.getElementById('ovprev').style.color=c;document.querySelectorAll('.co').forEach(x=>x.classList.remove('sel'));el.classList.add('sel')}
+function copyOv(){navigator.clipboard.writeText(document.getElementById('ovtxt').value).then(()=>alert('✅ Texte copié !'))}
+
+// ── TITLE GEN ──
+const TITLES={tiktok:["🔴 LIVE MAINTENANT — Venez on s'amuse !","🎁 Distribution de cadeaux en live !","🌟 1000 viewers et on fait un défi !","💥 LIVE SURPRISE — tu sais pas ce qui t'attend","🎵 On parle de tout ce soir !"],twitch:["🎮 Ranked grind — objectif Diamond ce soir","🕹️ NOUVEAUTÉ : premier essai en live !","🏆 Tournoi communauté — inscris-toi !","⚡ Speedrun — qui peut battre mon record ?","🎯 On clear le jeu en difficulté max"],youtube:["🔴 EN DIRECT — Questions / Réponses","🎬 Réaction à vos vidéos en live !","📢 Annonce importante + live de 3h","🌍 On explore le monde ensemble","💡 Live tutoriel : apprenez avec moi"],insta:["✨ Good vibes only — live lifestyle","📸 Behind the scenes — coulisses exclusives","💬 On se raconte nos semaines !","🌸 Live Q&A — posez vos questions","🔥 Collab surprise avec un créateur invité !"]};
+function genTit(){const p=document.getElementById('titplat').value,l=TITLES[p],t=l[Math.floor(Math.random()*l.length)];document.getElementById('titprev').textContent=t;document.getElementById('titprev-en').textContent=t}
+
+// ── COUNTDOWN ──
+let cdT=300,cdR=300,cdRun=false,cdI=null;
+function setCd(m){cdT=m*60;cdR=cdT;updCd()}
+function updCd(){const m=Math.floor(cdR/60),s=cdR%60;document.getElementById('cddisp').textContent=`${p2(m)}:${p2(s)}`}
+function cdToggle(){cdRun=!cdRun;const b=document.getElementById('cd-btn');if(cdRun){cdI=setInterval(()=>{if(cdR<=0){clearInterval(cdI);cdRun=false;document.getElementById('cddisp').textContent='🔴 GO LIVE!';return}cdR--;updCd()},1000);b.innerHTML='<span data-lang="fr">⏸ Pause</span><span data-lang="en">⏸ Pause</span>'}else{clearInterval(cdI);b.innerHTML='<span data-lang="fr">▶ Lancer</span><span data-lang="en">▶ Start</span>'}setLang(document.body.className)}
+function cdReset(){clearInterval(cdI);cdRun=false;cdR=cdT;updCd();document.getElementById('cd-btn').innerHTML='<span data-lang="fr">▶ Lancer</span><span data-lang="en">▶ Start</span>';setLang(document.body.className)}
+
+// ── CHECKLIST ──
+const CL=[{fr:"Micro testé",en:"Mic tested"},{fr:"Webcam allumée",en:"Webcam on"},{fr:"Éclairage ok",en:"Lighting ok"},{fr:"Titre prêt",en:"Title ready"},{fr:"Connexion stable",en:"Stable connection"},{fr:"Alertes configurées",en:"Alerts set"},{fr:"Contenu planifié",en:"Content planned"}];
+let clD=new Set();
+function buildCL(){const w=document.getElementById('clwidget');if(!w)return;w.innerHTML=CL.map((x,i)=>`<div onclick="togCL(${i})" style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);cursor:pointer" id="cl${i}"><div id="clb${i}" style="width:20px;height:20px;border-radius:4px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--bg2);font-size:12px;font-weight:700;color:#34d399"></div><span style="font-size:13px"><span data-lang="fr">${x.fr}</span><span data-lang="en">${x.en}</span></span></div>`).join('')+`<div style="text-align:center;margin-top:10px;font-size:12px;color:var(--muted)"><span id="clcnt">0</span>/${CL.length} <span data-lang="fr">complété</span><span data-lang="en">completed</span></div>`;setLang(document.body.className)}
+function togCL(i){if(clD.has(i)){clD.delete(i);const b=document.getElementById('clb'+i);b.textContent='';b.style.borderColor='var(--border)'}else{clD.add(i);const b=document.getElementById('clb'+i);b.textContent='✓';b.style.borderColor='#34d399'}document.getElementById('clcnt').textContent=clD.size}
+
+// ── TUTOS ──
+function fTuto(cat,btn){document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.tucard').forEach(c=>{c.style.display=(cat==='all'||c.dataset.cat===cat)?'block':'none'})}
+
+const TUTOS={
+  tuto1:{fr:{title:"Faire son premier TikTok Live",plat:"TikTok Live",lvl:"Débutant",time:"8 min",content:`
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin-bottom:2rem;border:1px solid rgba(0,207,255,0.2)">
+  <iframe src="https://www.youtube-nocookie.com/embed/zSRdvAqgYEA" title="Comment faire un TikTok Live" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>
+</div>
+<h3>Pourquoi streamer sur TikTok Live ?</h3>
+<p>TikTok Live est l'une des plateformes les plus accessibles pour débuter. Pas besoin de 1000 abonnés comme avant — depuis 2023, n'importe qui peut lancer un live avec au moins 16 ans.</p>
+<img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=700&q=80" alt="TikTok Live setup" style="width:100%;border-radius:12px;margin:1rem 0;border:1px solid rgba(0,207,255,0.15)"/>
+<h3>Prérequis</h3>
+<ul><li>Avoir au moins 1000 abonnés TikTok</li><li>Avoir plus de 16 ans</li><li>Compte en règle (pas de violations récentes)</li></ul>
+<h3>Étapes pour lancer ton premier live</h3>
+<p><strong>1.</strong> Ouvre l'appli TikTok et appuie sur le bouton "+" en bas.</p>
+<p><strong>2.</strong> Fais glisser les options vers "Live" à droite.</p>
+<p><strong>3.</strong> Choisis un titre accrocheur (utilise notre générateur de titres !).</p>
+<p><strong>4.</strong> Ajoute une image de couverture attrayante.</p>
+<p><strong>5.</strong> Appuie sur "Démarrer le live" et c'est parti !</p>
+<div class="tip">💡 <strong>Astuce :</strong> Stream au moins 3 fois par semaine pour que l'algorithme te pousse. La régularité est la clé sur TikTok.</div>
+<h3>Interagir avec ton audience</h3>
+<p>Dis bonjour aux nouveaux arrivants par leur prénom. Pose des questions à ta communauté. Remercie les cadeaux publiquement. Plus tu interagis, plus l'algorithme te met en avant.</p>`},
+en:{title:"Your First TikTok Live",plat:"TikTok Live",lvl:"Beginner",time:"8 min",content:`
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin-bottom:2rem;border:1px solid rgba(0,207,255,0.2)">
+  <iframe src="https://www.youtube-nocookie.com/embed/zSRdvAqgYEA" title="How to TikTok Live" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>
+</div>
+<h3>Why stream on TikTok Live?</h3>
+<p>TikTok Live is one of the most accessible platforms to start. Since 2023, anyone aged 16+ can go live.</p>
+<img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=700&q=80" alt="TikTok Live setup" style="width:100%;border-radius:12px;margin:1rem 0;border:1px solid rgba(0,207,255,0.15)"/>
+<h3>Requirements</h3>
+<ul><li>At least 1000 TikTok followers</li><li>Be at least 16 years old</li><li>Account in good standing</li></ul>
+<h3>Steps to launch your first live</h3>
+<p><strong>1.</strong> Open TikTok and tap "+" at the bottom.</p>
+<p><strong>2.</strong> Swipe to "Live" on the right.</p>
+<p><strong>3.</strong> Choose a catchy title (use our title generator!).</p>
+<p><strong>4.</strong> Add an attractive cover image.</p>
+<p><strong>5.</strong> Tap "Go Live" — you're on!</p>
+<div class="tip">💡 <strong>Tip:</strong> Stream at least 3x a week so the algorithm boosts you. Consistency is key on TikTok.</div>`}},
+  tuto2:{fr:{title:"Optimiser son setup streaming",plat:"Général",lvl:"Intermédiaire",time:"12 min",content:`
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin-bottom:2rem;border:1px solid rgba(0,207,255,0.2)">
+  <iframe src="https://www.youtube-nocookie.com/embed/jMcOhBdG5_o" title="Setup streaming" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>
+</div>
+<h3>🎙️ Le son — priorité absolue</h3>
+<p>Un mauvais son fait fuir les viewers plus vite que n'importe quoi d'autre. Investis d'abord dans un bon micro.</p>
+<img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=700&q=80" alt="Microphone setup" style="width:100%;border-radius:12px;margin:1rem 0;border:1px solid rgba(0,207,255,0.15)"/>
+<h3>📸 La caméra</h3>
+<p>Pas besoin d'une caméra hors de prix. Une webcam HD 1080p à 50€ suffit amplement pour débuter. L'éclairage est bien plus important que la qualité de la caméra elle-même.</p>
+<h3>💡 L'éclairage</h3>
+<p>Un ring light devant toi change tout. Si tu n'en as pas, place-toi face à une fenêtre avec la lumière naturelle. Évite d'avoir une source lumineuse derrière toi.</p>
+<img src="https://images.unsplash.com/photo-1605648916319-cf082f7524a1?w=700&q=80" alt="Streaming lighting setup" style="width:100%;border-radius:12px;margin:1rem 0;border:1px solid rgba(0,207,255,0.15)"/>
+<h3>🌐 La connexion</h3>
+<p>Utilise le câble ethernet plutôt que le WiFi. Pour un stream 1080p, tu as besoin d'au moins 6 Mbps en upload.</p>
+<div class="tip">💡 <strong>Astuce :</strong> Teste toujours ton setup 30 minutes avant le live. Utilise notre timer de préparation !</div>`},
+en:{title:"Optimize your streaming setup",plat:"General",lvl:"Intermediate",time:"12 min",content:`
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin-bottom:2rem;border:1px solid rgba(0,207,255,0.2)">
+  <iframe src="https://www.youtube-nocookie.com/embed/jMcOhBdG5_o" title="Streaming setup" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>
+</div>
+<h3>🎙️ Sound — top priority</h3>
+<p>Bad audio drives viewers away faster than anything else. Invest in a good mic first.</p>
+<img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=700&q=80" alt="Microphone setup" style="width:100%;border-radius:12px;margin:1rem 0;border:1px solid rgba(0,207,255,0.15)"/>
+<h3>📸 Camera</h3>
+<p>No need for an expensive camera. A 1080p HD webcam at €50 is plenty to start. Lighting matters more than camera quality.</p>
+<h3>💡 Lighting</h3>
+<p>A ring light in front of you makes a huge difference. If you don't have one, sit facing a window with natural light. Avoid light sources behind you.</p>
+<div class="tip">💡 <strong>Tip:</strong> Always test your setup 30 minutes before going live. Use our prep timer!</div>`}},
+  tuto3:{fr:{title:"Débuter sur Twitch en 2026",plat:"Twitch",lvl:"Débutant",time:"10 min",content:`
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin-bottom:2rem;border:1px solid rgba(0,207,255,0.2)">
+  <iframe src="https://www.youtube-nocookie.com/embed/cMYlFe2qxkc" title="Débuter sur Twitch" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>
+</div>
+<h3>Pourquoi Twitch en 2026 ?</h3>
+<p>Twitch reste la référence pour les streamers gaming avec plus de 7 millions de streamers actifs. Mais c'est aussi le plus compétitif.</p>
+<img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=700&q=80" alt="Gaming streaming setup" style="width:100%;border-radius:12px;margin:1rem 0;border:1px solid rgba(0,207,255,0.15)"/>
+<h3>Configurer OBS pour Twitch</h3>
+<p>OBS Studio est gratuit et puissant. Télécharge-le sur obsproject.com. Dans Paramètres > Stream, sélectionne Twitch et colle ta clé de stream.</p>
+<h3>Paramètres recommandés</h3>
+<ul><li>Résolution : 1920x1080</li><li>FPS : 60</li><li>Bitrate : 6000 kbps</li><li>Encodeur : x264 ou NVENC (GPU Nvidia)</li></ul>
+<div class="tip">💡 <strong>Astuce :</strong> Joue à des jeux peu streamés mais avec une vraie audience. Évite Fortnite et Minecraft au départ — la concurrence est énorme.</div>`},
+en:{title:"Start on Twitch in 2026",plat:"Twitch",lvl:"Beginner",time:"10 min",content:`
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin-bottom:2rem;border:1px solid rgba(0,207,255,0.2)">
+  <iframe src="https://www.youtube-nocookie.com/embed/cMYlFe2qxkc" title="Start on Twitch" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>
+</div>
+<h3>Why Twitch in 2026?</h3>
+<p>Twitch remains the reference for gaming streamers with over 7 million active streamers. But it's also the most competitive.</p>
+<img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=700&q=80" alt="Gaming streaming setup" style="width:100%;border-radius:12px;margin:1rem 0;border:1px solid rgba(0,207,255,0.15)"/>
+<h3>Setting up OBS for Twitch</h3>
+<p>OBS Studio is free and powerful. Download at obsproject.com. In Settings > Stream, select Twitch and paste your stream key.</p>
+<div class="tip">💡 <strong>Tip:</strong> Stream games with a real audience but low competition. Avoid Fortnite and Minecraft at first.</div>`}},
+  tuto4:{fr:{title:"Créer ses overlays gratuitement",plat:"Général",lvl:"Débutant",time:"6 min",content:`
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin-bottom:2rem;border:1px solid rgba(0,207,255,0.2)">
+  <iframe src="https://www.youtube-nocookie.com/embed/Wj3j6sTmAiY" title="Créer overlay streaming gratuit" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>
+</div>
+<h3>C'est quoi un overlay ?</h3>
+<p>Un overlay est une surcouche graphique qui s'affiche sur ton stream : alertes de dons, barre d'abonnés, webcam encadrée, etc. Il professionnalise ton stream instantanément.</p>
+<img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=700&q=80" alt="Streaming overlay design" style="width:100%;border-radius:12px;margin:1rem 0;border:1px solid rgba(0,207,255,0.15)"/>
+<h3>Outils gratuits recommandés</h3>
+<ul><li><strong>Canva</strong> — pour créer des graphiques simples</li><li><strong>Streamlabs</strong> — overlays prêts à l'emploi</li><li><strong>Nerd or Die</strong> — templates premium gratuits</li><li><strong>OWN3D</strong> — bibliothèque d'overlays</li></ul>
+<h3>Utiliser notre générateur d'overlay</h3>
+<p>Dans la section Outils de ce site, tu peux personnaliser un texte d'overlay et le copier directement dans OBS !</p>
+<div class="tip">💡 <strong>Astuce :</strong> Garde ton overlay simple. Trop d'éléments distraient les viewers de ton contenu principal.</div>`},
+en:{title:"Create overlays for free",plat:"General",lvl:"Beginner",time:"6 min",content:`
+<h3>What is an overlay?</h3>
+<p>An overlay is a graphic layer displayed on your stream: donation alerts, subscriber bar, framed webcam, etc. It instantly professionalizes your stream.</p>
+<img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?w=700&q=80" alt="Streaming overlay" style="width:100%;border-radius:12px;margin:1rem 0;border:1px solid rgba(0,207,255,0.15)"/>
+<h3>Free recommended tools</h3>
+<ul><li><strong>Canva</strong> — for simple graphics</li><li><strong>Streamlabs</strong> — ready-made overlays</li><li><strong>Nerd or Die</strong> — free premium templates</li></ul>
+<div class="tip">💡 <strong>Tip:</strong> Keep your overlay simple. Too many elements distract viewers from your main content.</div>`}},
+  tuto5:{fr:{title:"Grandir sur YouTube Live",plat:"YouTube Live",lvl:"Intermédiaire",time:"14 min",content:`
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin-bottom:2rem;border:1px solid rgba(0,207,255,0.2)">
+  <iframe src="https://www.youtube-nocookie.com/embed/RFQQ2hFHlFk" title="Grandir YouTube Live" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>
+</div>
+<h3>YouTube Live vs les autres plateformes</h3>
+<p>YouTube Live a un avantage énorme : tes lives restent sur ta chaîne comme des vidéos normales. Ils continuent de générer des vues et des abonnés même des mois après.</p>
+<img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=700&q=80" alt="YouTube Live streaming" style="width:100%;border-radius:12px;margin:1rem 0;border:1px solid rgba(0,207,255,0.15)"/>
+<h3>Le SEO des lives YouTube</h3>
+<p>Utilise des mots-clés dans ton titre et ta description avant de démarrer. YouTube indexe les lives comme des vidéos normales.</p>
+<div class="tip">💡 <strong>Astuce :</strong> Crée un thumbnail attractif pour ton live. C'est souvent la première chose que les gens voient dans les recommendations.</div>`},
+en:{title:"Grow on YouTube Live",plat:"YouTube Live",lvl:"Intermediate",time:"14 min",content:`
+<h3>YouTube Live vs other platforms</h3>
+<p>YouTube Live has a huge advantage: your streams stay on your channel as regular videos. They continue generating views and subscribers months later.</p>
+<img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=700&q=80" alt="YouTube Live" style="width:100%;border-radius:12px;margin:1rem 0;border:1px solid rgba(0,207,255,0.15)"/>
+<div class="tip">💡 <strong>Tip:</strong> Create an attractive thumbnail for your live. It's often the first thing people see in recommendations.</div>`}},
+  tuto6:{fr:{title:"Maîtriser OBS Studio",plat:"Général",lvl:"Intermédiaire",time:"15 min",content:`
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin-bottom:2rem;border:1px solid rgba(0,207,255,0.2)">
+  <iframe src="https://www.youtube-nocookie.com/embed/DTk99mHDX_I" title="OBS Studio tutoriel" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>
+</div>
+<h3>Pourquoi OBS ?</h3>
+<p>OBS Studio est le logiciel de streaming le plus utilisé au monde. Il est 100% gratuit, open source et compatible avec toutes les plateformes.</p>
+<img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=700&q=80" alt="OBS Studio" style="width:100%;border-radius:12px;margin:1rem 0;border:1px solid rgba(0,207,255,0.15)"/>
+<h3>Les Scènes et Sources</h3>
+<p>Dans OBS, tu travailles avec des <strong>Scènes</strong> (ex: "En live", "Pause", "Intro") et des <strong>Sources</strong> (capture d'écran, webcam, images, texte). Tu peux switcher entre scènes en direct.</p>
+<h3>Paramètres essentiels</h3>
+<ul><li>Sortie > Bitrate vidéo : 6000 kbps pour TikTok/Twitch</li><li>Vidéo > FPS : 60</li><li>Audio : 320 kbps, 48kHz</li></ul>
+<div class="tip">💡 <strong>Astuce :</strong> Installe le plugin "OBS Virtual Camera" pour utiliser OBS directement dans TikTok mobile via un PC.</div>`},
+en:{title:"Master OBS Studio",plat:"General",lvl:"Intermediate",time:"15 min",content:`
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin-bottom:2rem;border:1px solid rgba(0,207,255,0.2)">
+  <iframe src="https://www.youtube-nocookie.com/embed/DTk99mHDX_I" title="OBS Studio tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>
+</div>
+<h3>Why OBS?</h3>
+<p>OBS Studio is the world's most used streaming software. 100% free, open source and compatible with all platforms.</p>
+<img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=700&q=80" alt="OBS Studio" style="width:100%;border-radius:12px;margin:1rem 0;border:1px solid rgba(0,207,255,0.15)"/>
+<div class="tip">💡 <strong>Tip:</strong> Install "OBS Virtual Camera" plugin to use OBS directly in mobile TikTok via a PC.</div>`}},
+  tuto7:{fr:{title:"Monétiser ses lives en 2026",plat:"Général",lvl:"Avancé",time:"18 min",content:`
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin-bottom:2rem;border:1px solid rgba(0,207,255,0.2)">
+  <iframe src="https://www.youtube-nocookie.com/embed/ynKFxH-4mY0" title="Monétiser streaming 2026" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>
+</div>
+<h3>Les méthodes de monétisation en 2026</h3>
+<p>Il existe de nombreuses façons de gagner de l'argent avec tes lives. Voici les plus efficaces classées par popularité.</p>
+<img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=700&q=80" alt="Monétisation streaming" style="width:100%;border-radius:12px;margin:1rem 0;border:1px solid rgba(0,207,255,0.15)"/>
+<h3>1. Les dons et cadeaux</h3>
+<p>Sur TikTok, les spectateurs peuvent envoyer des cadeaux virtuels convertibles en argent. Sur Twitch et YouTube, les bits et superchats remplissent ce rôle. C'est souvent la première source de revenus.</p>
+<div class="tip">💡 Remercie TOUJOURS les dons publiquement et chaleureusement — ça encourage les autres à donner.</div>
+<h3>2. Les abonnements</h3>
+<p>Sur Twitch (Sub), YouTube (Membership) et TikTok (Abonnement), tes fans peuvent payer un abonnement mensuel pour des avantages exclusifs.</p>
+<h3>3. Les sponsorings</h3>
+<p>Dès que tu atteins quelques milliers de viewers réguliers, des marques peuvent te contacter. Taux habituels : 50 à 500€ par activation selon ta taille.</p>
+<h3>4. Le merchandise</h3>
+<p>Crée ta propre boutique (t-shirts, mugs, casquettes) avec des plateformes comme Printful ou Spreadshirt.</p>
+<h3>5. Les formations</h3>
+<p>Une fois expert, vends tes connaissances : cours de streaming, coaching, services de montage pour d'autres créateurs.</p>`},
+en:{title:"Monetize your streams in 2026",plat:"General",lvl:"Advanced",time:"18 min",content:`
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;margin-bottom:2rem;border:1px solid rgba(0,207,255,0.2)">
+  <iframe src="https://www.youtube-nocookie.com/embed/ynKFxH-4mY0" title="Monetize streaming 2026" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px"></iframe>
+</div>
+<h3>Monetization methods in 2026</h3>
+<p>There are many ways to earn money with your streams. Here are the most effective ones ranked by popularity.</p>
+<img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=700&q=80" alt="Stream monetization" style="width:100%;border-radius:12px;margin:1rem 0;border:1px solid rgba(0,207,255,0.15)"/>
+<h3>1. Donations and gifts</h3>
+<p>On TikTok, viewers can send virtual gifts convertible to money. On Twitch and YouTube, bits and superchats fill this role.</p>
+<div class="tip">💡 ALWAYS thank donations publicly and warmly — it encourages others to give.</div>
+<h3>2. Subscriptions</h3>
+<p>On Twitch (Sub), YouTube (Membership) and TikTok (Subscription), fans can pay a monthly subscription for exclusive perks.</p>
+<h3>3. Sponsorships</h3>
+<p>Once you reach a few thousand regular viewers, brands may contact you. Usual rates: €50-500 per activation.</p>
+<h3>4. Merchandise</h3>
+<p>Create your own shop with platforms like Printful or Spreadshirt.</p>`}}
+};
+function openTuto(id){const l=document.body.className,d=TUTOS[id];if(!d){const t=document.getElementById('tuto-detail'),c=document.getElementById('tuto-content');t.classList.add('show');document.getElementById('tutogrid').style.display='none';document.querySelector('.tfilters').style.display='none';c.innerHTML=`<h2 style="font-family:var(--fh);font-size:1.2rem;margin-bottom:.5rem" data-lang="fr">Tutoriel complet</h2><h2 style="font-family:var(--fh);font-size:1.2rem;margin-bottom:.5rem" data-lang="en">Full tutorial</h2><p style="color:var(--muted);font-size:14px" data-lang="fr">Ce tutoriel est en cours de rédaction. Reviens bientôt !</p><p style="color:var(--muted);font-size:14px" data-lang="en">This tutorial is being written. Come back soon!</p>`;setLang(l);return}const info=d[l]||d['fr'];const t=document.getElementById('tuto-detail'),c=document.getElementById('tuto-content');t.classList.add('show');document.getElementById('tutogrid').style.display='none';document.querySelector('.tfilters').style.display='none';c.innerHTML=`<div style="display:flex;align-items:center;gap:12px;margin-bottom:2rem;flex-wrap:wrap"><span class="pcb b-t">${info.plat}</span><span style="font-size:12px;color:var(--muted)">⏱ ${info.time}</span><span style="font-size:12px;color:var(--muted)">• ${info.lvl}</span></div><h1 style="font-family:var(--fh);font-size:clamp(1.4rem,4vw,2rem);font-weight:900;margin-bottom:2rem;line-height:1.2">${info.title}</h1>${info.content}`;window.scrollTo(0,0)}
+function closeTuto(){document.getElementById('tuto-detail').classList.remove('show');document.getElementById('tutogrid').style.display='grid';document.querySelector('.tfilters').style.display='flex';setLang(document.body.className)}
+
+// ── AUTH ──
+function swTab(t){document.querySelectorAll('.atab').forEach((x,i)=>x.classList.toggle('active',(i===0&&t==='si')||(i===1&&t==='su')));document.getElementById('f-si').classList.toggle('active',t==='si');document.getElementById('f-su').classList.toggle('active',t==='su');document.getElementById('auth-succ').style.display='none'}
+function togChk(el){const cb=el.querySelector('input[type="checkbox"]');cb.checked=!cb.checked;el.style.borderColor=cb.checked?'var(--accent)':'var(--border)';el.style.background=cb.checked?'rgba(0,207,255,.06)':'var(--bg3)'}
+function se(id,show){const e=document.getElementById(id);if(e)e.style.display=show?'block':'none'}
+function se2(id1,id2,show){se(id1,show);se(id2,show)}
+function doSI(){
+  var em=document.getElementById('si-em').value.trim();
+  var pw=document.getElementById('si-pw').value;
+  var ok=true;
+  document.getElementById('si-em').style.borderColor='';
+  document.getElementById('si-pw').style.borderColor='';
+  if(!em||!em.includes('@')){
+    document.getElementById('si-em-err').textContent='Email invalide';
+    document.getElementById('si-em-err-en').textContent='Invalid email';
+    se2('si-em-err','si-em-err-en',true);
+    document.getElementById('si-em').style.borderColor='rgba(239,68,68,.5)';
+    ok=false;
+  } else { se2('si-em-err','si-em-err-en',false); }
+  if(!pw){
+    se2('si-pw-err','si-pw-err-en',true);
+    document.getElementById('si-pw').style.borderColor='rgba(239,68,68,.5)';
+    ok=false;
+  } else { se2('si-pw-err','si-pw-err-en',false); }
+  if(!ok) return;
+  // Check stored users
+  try {
+    var users=JSON.parse(localStorage.getItem('sz_users')||'[]');
+    var user=users.find(function(u){return u.em===em;});
+    if(!user){
+      document.getElementById('si-em-err').textContent='Aucun compte avec cet email';
+      document.getElementById('si-em-err-en').textContent='No account with this email';
+      se2('si-em-err','si-em-err-en',true);
+      document.getElementById('si-em').style.borderColor='rgba(239,68,68,.5)';
+      return;
+    }
+    localStorage.setItem('sz_current',JSON.stringify({ps:user.ps,em:em}));
+    document.getElementById('f-si').classList.remove('active');
+    document.getElementById('auth-succ').style.display='block';
+    var nameEls=document.querySelectorAll('.auth-succ-name');
+    nameEls.forEach(function(el){el.textContent=user.ps;});
+    setLang(document.body.className);
+  } catch(e){
+    // localStorage not available - still show success for demo
+    document.getElementById('f-si').classList.remove('active');
+    document.getElementById('auth-succ').style.display='block';
+    setLang(document.body.className);
+  }
+}
+function doSU(){
+  var ps=document.getElementById('su-ps').value.trim();
+  var em=document.getElementById('su-em').value.trim();
+  var pw=document.getElementById('su-pw').value;
+  var ok=true;
+  // Reset styles
+  document.getElementById('su-ps').style.borderColor='';
+  document.getElementById('su-em').style.borderColor='';
+  document.getElementById('su-pw').style.borderColor='';
+  // Validate pseudo
+  if(!ps){
+    document.getElementById('su-ps-err').textContent='Champ requis';
+    document.getElementById('su-ps-err-en').textContent='Required';
+    se2('su-ps-err','su-ps-err-en',true);
+    document.getElementById('su-ps').style.borderColor='rgba(239,68,68,.5)';
+    ok=false;
+  } else { se2('su-ps-err','su-ps-err-en',false); }
+  // Validate email
+  if(!em||!em.includes('@')||!em.includes('.')){
+    document.getElementById('su-em-err').textContent='Email invalide';
+    document.getElementById('su-em-err-en').textContent='Invalid email';
+    se2('su-em-err','su-em-err-en',true);
+    document.getElementById('su-em').style.borderColor='rgba(239,68,68,.5)';
+    ok=false;
+  } else { se2('su-em-err','su-em-err-en',false); }
+  // Validate password
+  if(pw.length<8){
+    se2('su-pw-err','su-pw-err-en',true);
+    document.getElementById('su-pw').style.borderColor='rgba(239,68,68,.5)';
+    ok=false;
+  } else { se2('su-pw-err','su-pw-err-en',false); }
+  if(!ok) return;
+  // Try to save (works in most browsers)
+  try {
+    var users=JSON.parse(localStorage.getItem('sz_users')||'[]');
+    var exists=users.find(function(u){return u.em===em;});
+    if(exists){
+      document.getElementById('su-em-err').textContent='Email déjà utilisé';
+      document.getElementById('su-em-err-en').textContent='Email already in use';
+      se2('su-em-err','su-em-err-en',true);
+      document.getElementById('su-em').style.borderColor='rgba(239,68,68,.5)';
+      return;
+    }
+    users.push({ps:ps,em:em});
+    localStorage.setItem('sz_users',JSON.stringify(users));
+    localStorage.setItem('sz_current',JSON.stringify({ps:ps,em:em}));
+  } catch(e){ /* localStorage not available, continue anyway */ }
+  // Show success
+  document.getElementById('f-su').classList.remove('active');
+  document.getElementById('auth-succ').style.display='block';
+  var nameEls=document.querySelectorAll('.auth-succ-name');
+  nameEls.forEach(function(el){el.textContent=ps;});
+  setLang(document.body.className);
+}
+
+// ── NEWSLETTER ──
+function doNewsletter(inputId,msgId){const v=document.getElementById(inputId).value.trim();if(!v||!v.includes('@')){alert(document.body.className==='fr'?'Entre une adresse email valide':'Enter a valid email address');return}document.querySelectorAll('#'+msgId).forEach(e=>e.style.display='block');document.getElementById(inputId).value='';setLang(document.body.className)}
+
+// ── CONTACT ──
+function sendContact(){
+  var n=document.getElementById('ct-name').value.trim();
+  var em=document.getElementById('ct-email').value.trim();
+  var subj=document.getElementById('ct-subject').value;
+  var msg=document.getElementById('ct-msg').value.trim();
+  var ok=true;
+  // Validate
+  if(!n){alert('Entre ton nom !');return;}
+  if(!em||!em.includes('@')||!em.includes('.')){
+    document.getElementById('ct-em-err').style.display='block';ok=false;
+  } else {document.getElementById('ct-em-err').style.display='none';}
+  if(!msg){
+    document.getElementById('ct-msg-err').style.display='block';ok=false;
+  } else {document.getElementById('ct-msg-err').style.display='none';}
+  if(!ok) return;
+  // Build mailto
+  var body='Nom: '+n+'\nEmail: '+em+'\n\n'+msg;
+  var mailto='mailto:furtadoxsidex@gmail.com?subject='+encodeURIComponent('[Stream Zone] '+subj)+'&body='+encodeURIComponent(body);
+  window.open(mailto,'_self');
+  // Show success after short delay
+  setTimeout(function(){
+    document.getElementById('contact-form').style.display='none';
+    document.getElementById('contact-success').style.display='block';
+    setLang(document.body.className);
+  },800);
+}
+
+// ── BITRATE CALCULATOR ──
+function calcBitrate(){
+  const res=parseInt(document.getElementById('br-res').value);
+  const fps=parseInt(document.getElementById('br-fps').value);
+  let br=0;
+  if(res===720){br=fps===60?4500:3000}
+  else if(res===1080){br=fps===60?6000:4500}
+  else if(res===1440){br=fps===60?9000:7000}
+  document.getElementById('br-result').textContent=br.toLocaleString()+' kbps';
+  const upload=(br/1000*1.2).toFixed(1);
+  document.getElementById('br-note').textContent='Upload minimum requis : '+upload+' Mbps';
+}
+
+// ── HASHTAG GENERATOR ──
+const HASHTAGS={
+  tiktok:['#tiktoklive','#live','#streamer','#foryou','#fyp','#viral','#tiktokfr','#gaming','#content'],
+  twitch:['#twitch','#twitchstreamer','#livestream','#gaming','#streamer','#twitchlive','#gamer'],
+  youtube:['#youtubelive','#livestream','#youtube','#gaming','#live','#streamer','#youtubefr'],
+  instagram:['#instagramlive','#igtv','#live','#content','#creator','#instagood','#reels']
+};
+function genHashtags(){
+  const plat=document.getElementById('ht-plat').value;
+  const theme=document.getElementById('ht-theme').value.trim();
+  const base=HASHTAGS[plat]||[];
+  let tags=[...base];
+  if(theme){
+    const t=theme.toLowerCase().replace(/\s+/g,'');
+    tags.unshift('#'+t,'#'+t+'live','#'+t+'fr','#'+t+'gaming');
+  }
+  // Shuffle and pick 15
+  tags=tags.sort(()=>Math.random()-.5).slice(0,15);
+  document.getElementById('ht-result').textContent=tags.join(' ');
+}
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded',function(){
+  setLang('fr');
+  go('home');
+  buildCL();
+  calcBitrate();
+});
+</script>
+</body>
+</html>
